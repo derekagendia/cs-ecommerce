@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,700;1,600&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/css/custom.css" rel="stylesheet">
+    <link href="./assets/css/theme.css" rel="stylesheet">
+ 
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+   <div class="page-header row pb-3">
+    
+  <div class="col-md-4" style="background-image: url('./assets/img/dg2.jpg'); background-size:cover;">
+<div style="padding-top:8rem;">
+  
+</div>
+  </div>
+  <div class="col-md-8">
+    <div class="row justify-content-center pt-5">
+      <div class="col-md-6">
+        <div class="card mb-3 border-0 shadow card-radius-1">
+          <div class="card-body">
+            <h3 class="fw-bolder text-center mb-5">Sign-in</h3>
+            <div class="d-grid gap-2 mb-3">
+              <a href="#"><button class="btn btn-white w-100  border" type="button"><span class="me-2">
+                <img src="./assets/img/google.svg" style="height: 20px; width:auto;" alt="">
+              </span>
+               Connect with Google</button></a>
+            </div>
+            <p class="text-center mb-3">Or</p>
+            <form>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email or phone number</label>
+                <input type="text" class="form-control" id="">
+              </div>
+              <label class="form-label">Password</label>
+              <div class="input-group mb-3">
+                
+                <input type="password" class="form-control" id="myInput">
+                <div class="input-group-text">
+                  <input class="form-check-input mt-0" type="checkbox" value="" onclick="myFunction()">
+                </div>  
+              </div>
+              <div class="form-text mb-3">Click the check box to view the password you inputed</div>
+              <div class="d-grid gap-2 mt-2">
+                <a href="#" class="text-center"><button id="click" class="btn btn-primary w-100" type="button"><span id="spin" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span> <span id="signin">Sign-in</span></button></a>
+
+              </div>
+              <p style="font-size:10pt;" class="text-center mt-1">You do not have an account? <span class="text-success"><a href="signup.html" class="no-decoration">create one here</a></span></p>
+              
+            </form>
+          </div>
+        </div>
+        <p class="text-center"><a href="#" class="nav-link">Forgot password</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+   </section>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+<script>
+  function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+
+document.getElementById('click').addEventListener('click', function(){
+
+  document.getElementById('spin').classList.remove("d-none")
+  document.getElementById("signin").style.display= 'none'
+
+})
+
+
+</script>
+    
+  </body>
+</html>
