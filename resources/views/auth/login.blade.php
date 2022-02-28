@@ -15,12 +15,12 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <div class="d-grid gap-2 mb-3">
-                <a href="#"><button class="btn btn-white w-100  border" type="button"><span class="me-2">
-                <img src="{{ asset('assets/img/google.svg') }}" style="height: 20px; width:auto;" alt="">
-              </span>
-                        Connect with Google</button></a>
-            </div>
+{{--            <div class="d-grid gap-2 mb-3">--}}
+{{--                <a href="#"><button class="btn btn-white w-100  border" type="button"><span class="me-2">--}}
+{{--                <img src="{{ asset('assets/img/google.svg') }}" style="height: 20px; width:auto;" alt="">--}}
+{{--              </span>--}}
+{{--                        Connect with Google</button></a>--}}
+{{--            </div>--}}
             <div>
                 <x-jet-label for="email" value="{{ __('Email') }}" />
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
