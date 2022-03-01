@@ -51,7 +51,16 @@
                                aria-haspopup="true" aria-expanded="false">user account</span></a>
                             <div class="dropdown-menu" aria-labelledby="dropdownId">
                                 <a class="dropdown-item" href="#">My store</a>
-                                <a class="dropdown-item" href="#">Logout</a>
+
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                                         onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </a>
+                                </form>
                             </div>
                         </li>
                         @else
