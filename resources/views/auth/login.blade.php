@@ -22,8 +22,8 @@
 {{--                        Connect with Google</button></a>--}}
 {{--            </div>--}}
             <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-jet-label for="login" value="{{ __('Email Or Phone Number') }}" />
+                <x-jet-input id="login" class="block mt-1 w-full" type="text" name="login" :value="old('email')" required autofocus />
             </div>
 
             <div class="mt-4">
