@@ -48,24 +48,33 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">user account</span></a>
+                               aria-haspopup="true" aria-expanded="false">user account</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownId">
-                                <a class="dropdown-item" href="#">My store</a>
 
+                                @if(isset(auth()->user()->shop) && auth()->user()->shop->is_active && (auth()->user()->shop->user_id == auth()->user()->id))
+                                    <a class="dropdown-item" href="{{ route('dashboard') }}">My store</a>
+                                @else
+                                    @if(isset(auth()->user()->shop->is_active) && !auth()->user()->shop->is_active && (auth()->user()->shop->user_id == auth()->user()->id))
+                                        <a class="dropdown-item" href="#">Store under verification</a>
+                                    @else
+                                        <a class="dropdown-item" href="#">Create Store</a>
+                                    @endif
+
+                                @endif
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                                         onclick="event.preventDefault();
+                                       onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                         {{ __('Log Out') }}
                                     </a>
                                 </form>
                             </div>
                         </li>
-                        @else
-                            <a href="{{ route('login') }}" class="nav-link">Log in</a>
-                            <a href="{{ route('register') }}" class="nav-link">Register</a>
+                    @else
+                        <a href="{{ route('login') }}" class="nav-link">Log in</a>
+                        <a href="{{ route('register') }}" class="nav-link">Register</a>
 
                     @endauth
                 @endif

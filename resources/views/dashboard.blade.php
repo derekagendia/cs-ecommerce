@@ -1,10 +1,22 @@
 <x-app-layout>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+    <div class="flex">
+
+        <div class="grid grid-cols-1 gap-3">
+
+            <div class="p-3">
                 <x-jet-welcome />
             </div>
+
+            <div class="p-3">
+                <x-jet-welcome />
+            </div>
+
         </div>
+
+
     </div>
+
+
+
 </x-app-layout>
