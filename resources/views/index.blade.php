@@ -13,22 +13,7 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled">
-                                <li class="nav-item">
-                                    <a href="search_results.html" class="nav-link">Clothing</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="search_results.html" class="nav-link">Electronics</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="search_results.html" class="nav-link">Home appliances</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="search_results.html" class="nav-link">Office equipment</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="search_results.html" class="nav-link">More</a>
-                                </li>
-
+                                <livewire:show-categories />
                             </ul>
                         </div>
                     </div>

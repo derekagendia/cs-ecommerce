@@ -11,12 +11,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,700;1,600&display=swap"
           rel="stylesheet">
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <livewire:styles/>
+    <wireui:scripts/>
+    <script src="//unpkg.com/alpinejs" defer></script>
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
+
+    <script src="{{ mix('js/app.js') }}" defer></script>
 
     <title>Cs ecommerce</title>
 </head>
 <body>
+<x-notifications></x-notifications>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
@@ -57,7 +65,8 @@
                                     @if(isset(auth()->user()->shop->is_active) && !auth()->user()->shop->is_active && (auth()->user()->shop->user_id == auth()->user()->id))
                                         <a class="dropdown-item" href="#">Store under verification</a>
                                     @else
-                                        <a class="dropdown-item" href="#">Create Store</a>
+                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="dropdown-item"
+                                           href="#">Create Store</a>
                                     @endif
 
                                 @endif
@@ -86,6 +95,8 @@
     </div>
 </nav>
 
+<!-- Modal -->
+<livewire:save-shop/>
 
 <!-- end of navbar -->
 
@@ -134,5 +145,14 @@
 
 
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+@wireUiScripts
+<script src="//unpkg.com/alpinejs" defer></script>
+<livewire:scripts/>
+
+<script >
+    window.addEventListener('closeModal', event => {
+        $(".modal").modal('hide');
+    })
+</script>
 </body>
 </html>
