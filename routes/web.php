@@ -20,9 +20,16 @@ Route::get('/home', function () {
     return view('index');
 })->name('home');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group( function () {
+
+    Route::middleware('active')->prefix('dashboard')->group(function() {
+
+        Route::get('/', function () {
+            return view('dashboard');
+        })->name('dashboard');
+
+    });
+});
 
 
 Route::group(['prefix' => 'admin'], function () {
