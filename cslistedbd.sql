@@ -14,8 +14,6 @@
 
 
 -- Listage de la structure de la base pour cslistedecommerce
-CREATE DATABASE IF NOT EXISTS `cslistedecommerce` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `cslistedecommerce`;
 
 -- Listage de la structure de la table cslistedecommerce. categories
 CREATE TABLE IF NOT EXISTS `categories` (
