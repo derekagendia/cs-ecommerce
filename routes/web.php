@@ -31,7 +31,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group( function () {
     });
 });
 
-Route::get('/pub', [\App\Http\Controllers\HomeController::class, 'pub'])->name('pub');
+Route::get('/account-created', [\App\Http\Controllers\HomeController::class, 'pub'])->name('account-created');
 
 
 Route::group(['prefix' => 'admin'], function () {
