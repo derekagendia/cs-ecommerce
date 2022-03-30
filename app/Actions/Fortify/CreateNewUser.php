@@ -17,7 +17,7 @@ class CreateNewUser implements CreatesNewUsers
      * Validate and create a newly registered user.
      *
      * @param array $input
-     * @return User
+     * @return \Illuminate\Http\RedirectResponse
      * @throws ValidationException
      */
     public function create(array $input)
@@ -30,11 +30,13 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();
 
-        return User::create([
+         User::create([
             'name' => $input['name'],
             'phone' => $input['phone'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+        return redirect()->route('pub')->with('message','Thank For Your Register');
     }
 }

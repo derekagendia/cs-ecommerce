@@ -31,6 +31,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group( function () {
     });
 });
 
+Route::get('/pub', [\App\Http\Controllers\HomeController::class, 'pub'])->name('pub');
+
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

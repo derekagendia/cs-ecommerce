@@ -28,9 +28,7 @@
                         <p>This is to inform you that, Your account with CSListed E-commerce has been created
                             successfully. Login for more details.</p>
                         <p>Click the button below to verify your email address.</p>
-                        <a href="{{ $url }}"
-                           style="display: inline-block; padding: 11px 30px; margin: 20px 0px 30px; font-size: 15px; color: #fff; background: #00c0c8; border-radius: 60px; text-decoration:none;">
-                            Verify Email Address </a>
+
                         <p>To gain expert training on how to triple your sales click the button below</p>
                         <a href="https://chat.whatsapp.com/DirT2RpEsWj8mrFdMcHNEL"
                            style="display: inline-block; padding: 11px 30px; margin: 20px 0px 30px; font-size: 15px; color: #ffffff; background: #17e22b; border-radius: 60px; text-decoration:none;">
