@@ -2,8 +2,10 @@
 
 namespace App\Actions\Fortify;
 
+use App\Mail\Pub;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -36,6 +38,8 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+         mail::to($input['email'])->send(new Pub());
 
         return redirect()->route('pub')->with('message','Thank For Your Register');
     }
