@@ -27,7 +27,7 @@
                     <td><b>Dear Customer,</b>
                         <p>This is to inform you that, Your account with CSListed E-commerce has been created
                             successfully. Login for more details.</p>
-                        <p>Click the button below to verify your email address.</p>
+                        <p></p>
 
                         <p>To gain expert training on how to triple your sales click the button below</p>
                         <a href="https://chat.whatsapp.com/DirT2RpEsWj8mrFdMcHNEL"
