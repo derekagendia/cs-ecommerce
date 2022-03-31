@@ -26,13 +26,14 @@
                 <tr>
                     <td><b>Dear Customer,</b>
                         <p>This is to inform you that, Your account with CSListed E-commerce has been created
-                            successfully. Login for more details.</p>
-                        <p></p>
+                            successfully.</p>
+                        <p>You will soon receive a link to create your shop and sell products.</p>
+                        <p>In the mean time join our whatsapp community for tips and training on how to sell online</p>
 
-                        <p>To gain expert training on how to triple your sales click the button below</p>
                         <a href="https://chat.whatsapp.com/DirT2RpEsWj8mrFdMcHNEL"
                            style="display: inline-block; padding: 11px 30px; margin: 20px 0px 30px; font-size: 15px; color: #ffffff; background: #17e22b; border-radius: 60px; text-decoration:none;">
-                            Join our Group Whatsapp </a>
+                            Join Group
+                        </a>
                         <p></p>
                         <b>- Thanks (CSListed team)</b></td>
                 </tr>

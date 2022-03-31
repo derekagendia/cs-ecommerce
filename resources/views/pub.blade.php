@@ -48,7 +48,6 @@
                 <!-- partial:index.partial.html -->
                 <div id='card' class="animated fadeIn">
                     <div id='upper-side'>
-                    <?xml version = "1.0" encoding = "utf-8"?>
                     <!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                         <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
                         "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
@@ -71,6 +70,7 @@
                     <div id='lower-side'>
                         <p id='message'>
                             Congratulations, your account has been successfully created.
+                            open your email and follow instruction.
                         </p>
                     </div>
                 </div>
