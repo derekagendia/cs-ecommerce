@@ -28,6 +28,6 @@ class Pub extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.pub');
+        return $this->markdown('mail.pub')->subject('Shop CSListed Coming Soon !');
     }
 }
