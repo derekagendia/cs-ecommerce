@@ -1,48 +1,198 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<!--
+   This is a starter template page. Use this page to start your new project from
+   scratch. This page gets rid of all links and provides the needed markup only.
+   -->
+<html lang="en">
 
-        <title>{{ config('app.name', 'Cs ecommerce') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+    <title>Dashboard - {{ auth()->user()->name }}</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- This is Sidebar menu CSS -->
+    <link href="{{ asset('css/sidebar-nav.min.css') }}" rel="stylesheet">
+    <!-- This is a Animation CSS -->
+    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+    <!-- This is a Custom CSS -->
+    <link href="{{ asset('css/style2.css') }}" rel="stylesheet">
+    <!-- color CSS you can use different color css from css/colors folder -->
+    <!-- We have chosen the skin-blue (default.css) for this starter
+         page. However, you can choose any other skin from folder css / colors .
+         -->
+    <link href="{{ asset('css/blue-dark.css') }}" id="theme" rel="stylesheet">
+    <script src="{{ asset('js/custom.js') }}"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <livewire:styles/>
+    <wireui:scripts/>
+</head>
 
-        <!-- Styles -->
+<body class="fix-sidebar">
+<!-- Preloader -->
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+</div>
+<div id="wrapper">
+    <!-- Top Navigation -->
+    <nav class="navbar navbar-default navbar-static-top m-b-0">
+        <div class="navbar-header">
+            <!-- Toggle icon for mobile view -->
+            <div class="top-left-part">
+                <!-- Logo -->
 
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+                <a class="logo" href="index.html">
+                    <!-- Logo icon image, you can use font-icon also --><b>
+                        <!--This is dark logo icon-->
+                        <img src="{{ asset('images/admin-logo.png') }}" alt="home" class="dark-logo"/>
+                    </b>
+                    <!-- Logo text image you can use text also --><span class="hidden-xs">
+                        <!--This is dark logo text-->
+                            {{ auth()->user()->shop->name }}
+                     </span> </a>
+            </div>
+            <!-- /Logo -->
+            <!-- Hide Menu of phone interface -->
+            <ul class="nav navbar-top-links navbar-left">
+                <li><a href="javascript:void(0)" class="open-close waves-effect waves-light visible-xs"><i
+                            class="ti-close ti-menu"></i></a></li>
 
-        @livewireStyles
+            </ul>
+            <!-- This is the message dropdown -->
+            <ul class="nav navbar-top-links navbar-right pull-right">
+                <!-- /.Task dropdown -->
+                <!-- /.dropdown -->
 
-        <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
-        <x-jet-banner />
-
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+                <li class="dropdown">
+                    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img
+                            src="{{ asset('images/default-profil.jpg') }}" alt="user-img" width="36" class="img-circle"><b
+                            class="hidden-xs">{{ auth()->user()->name }}</b><span class="caret"></span> </a>
+                    <form class="dropdown-menu dropdown-user animated flipInY">
+                <li>
+                    <div class="dw-user-box">
+                        <div class="u-img"><img src="{{ asset('images/default-profil.jpg') }}" alt="user"/>
+                        </div>
+                        <div class="u-text"><h4>{{ auth()->user()->name }}</h4>
+                            <p class="text-muted">{{ auth()->user()->email }}</p>
+                            {{--                                    <a href="profile.html"--}}
+                            {{--                                       class="btn btn-rounded btn-danger btn-sm">View--}}
+                            {{--                                        Profile</a>--}}
+                        </div>
                     </div>
-                </header>
-            @endif
+                </li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+                <li style="display:none;">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="{{ route('logout') }}" class="waves-effect" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                            <i class="icon-logout fa-fw"></i> <span class="hide-menu">Log out</span>
+                        </a>
+                    </form>
+                </li>
+            </ul>
+            <!-- /.dropdown-user -->
+            </li>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            <!-- /.dropdown -->
+            </ul>
         </div>
+        <!-- /.navbar-header -->
+        <!-- /.navbar-top-links -->
+        <!-- /.navbar-static-side -->
+    </nav>
+    <!-- End Top Navigation -->
+    <!-- Left navbar-header -->
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav slimscrollsidebar">
+            <div class="sidebar-head">
+                <h3><span class="fa-fw open-close"><i class="ti-menu hidden-xs"></i><i class="ti-close visible-xs"></i></span>
+                    <span class="hide-menu">Navigation</span></h3></div>
+            <ul class="nav" id="side-menu">
+                <li><a href="javascript:void(0)" class="waves-effect active"><i data-icon="v"
+                                                                                class="linea-icon linea-basic fa-fw"></i><span
+                            class="hide-menu">Dashboard</span></a></li>
+                <li>
+                    <a href="javascript:void(0)" class="waves-effect">
+                        <i data-icon="/" class="linea-icon linea-basic fa-fw"></i>
+                        <span class="hide-menu">Manage Shop<span class="fa arrow"></span>
+                            </span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="javascript:void(0)"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i><span
+                                    class="hide-menu">Products</span></a></li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="fa-fw">S</i><span class="hide-menu"> Categories</span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="icon-basket"></i><span class="hide-menu"> Orders</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="javascript:void(0)" class="waves-effect">
+                        <i class="linea-icon linea-basic fa-fw icon-people"></i><span
+                            class="hide-menu">Manage User<span class="fa arrow"></span></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="javascript:void(0)"><i class="linea-icon linea-basic fa-fw icon-user"></i><span
+                                    class="hide-menu">Client</span></a></li>
+                    </ul>
+                </li>
+                <li class="m-l-15">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="{{ route('logout') }}" class="waves-effect" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                            <i class="icon-logout fa-fw"></i> <span class="hide-menu">Log out</span>
+                        </a>
+                    </form>
+                </li>
 
-        @stack('modals')
+            </ul>
+        </div>
+    </div>
+    <!-- Left navbar-header end -->
+@yield('content')
+<!-- /#page-wrapper -->
 
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2022 &copy; My Dashboard</footer>
+</div>
+</div>
+<!-- /#wrapper -->
+<!-- jQuery -->
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="{{ asset('bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<!-- Sidebar menu plugin JavaScript -->
+<script src="{{ asset('js/sidebar-nav.min.js') }}"></script>
+<!--Slimscroll JavaScript For custom scroll-->
+<script src="{{ asset('js/jquery.slimscroll.js') }}"></script>
+<!--Wave Effects -->
+<script src="{{ asset('js/waves.js') }}"></script>
+<!-- Custom Theme JavaScript -->
+<script src="{{ asset('js/custom.js') }}"></script>
 
-        @livewireScripts
-    </body>
+@wireUiScripts
+<script src="//unpkg.com/alpinejs" defer></script>
+<livewire:scripts/>
+</body>
+
 </html>
