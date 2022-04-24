@@ -30,7 +30,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e16997b8-ce87-44d8-8b6c-004962cfe3e6" name="Default Changelist" comment="" />
+    <list default="true" id="e16997b8-ce87-44d8-8b6c-004962cfe3e6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/jquery.min.js" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -187,7 +191,9 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RunManager">
@@ -211,6 +217,10 @@
       <updated>1644521744865</updated>
       <workItem from="1644522038750" duration="2658000" />
       <workItem from="1644573291223" duration="1058000" />
+      <workItem from="1647795117341" duration="32000" />
+      <workItem from="1647795160032" duration="107000" />
+      <workItem from="1647795279482" duration="147000" />
+      <workItem from="1647795440464" duration="305000" />
     </task>
     <servers />
   </component>
@@ -231,5 +241,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="277" y="62" key="SettingsEditor" timestamp="1647795427832">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="277" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1647795427832" />
   </component>
 </project>
