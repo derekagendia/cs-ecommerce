@@ -28,6 +28,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group( function () {
             return view('dashboard');
         })->name('dashboard');
 
+        Route::get('/products',[\App\Http\Livewire\Product::class])->name('products.show');
+
     });
 });
 
