@@ -29,7 +29,9 @@ class Product extends Component
         return view('livewire.product',
         [
             'products' => Produit::getProductShop(auth()->user()->shop->id),
-        ])->extends('layouts.app')->section('content');
+        ])
+            ->extends('layouts.app')
+            ->section('content');
     }
 
     public function productEdit(int $id)
