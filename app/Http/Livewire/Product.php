@@ -72,6 +72,7 @@ class Product extends Component
             $this->price = $product->price;
             $this->price_negociable = $product->price_negociable;
             $this->cover_img = $product->cover_img;
+
         }
     }
 
