@@ -9,7 +9,15 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','description','price','cover_img'];
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'cover_img',
+        'price_negociable',
+        'shop_id',
+        'is_negociable'
+    ];
 
     public function shop()
     {
@@ -18,6 +26,6 @@ class Product extends Model
 
     public static function getProductShop($shop_id)
     {
-        return Product::where('shop_id', $shop_id)->paginate(5);
+        return Product::where('shop_id', $shop_id)->get();
     }
 }

@@ -16,6 +16,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
     <title>Dashboard - {{ auth()->user()->name }}</title>
     <!-- Bootstrap Core CSS -->
+    {{--    <link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
     <link href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css"/>
     <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet"
@@ -23,6 +24,10 @@
 
     <!-- This is Sidebar menu CSS -->
     <link href="{{ asset('css/sidebar-nav.min.css') }}" rel="stylesheet">
+    <!-- toast CSS -->
+    <link href="{{ asset('css/jquery.toast.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('css/dropify.min.css') }}">
     <!-- This is a Animation CSS -->
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
     <!-- This is a Custom CSS -->
@@ -33,6 +38,7 @@
          -->
     <link href="{{ asset('css/blue-dark.css') }}" id="theme" rel="stylesheet">
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -182,6 +188,7 @@
 <!-- /#wrapper -->
 <!-- jQuery -->
 <script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="{{ asset('bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <!-- Sidebar menu plugin JavaScript -->
@@ -247,7 +254,67 @@
         ]
     });
 </script>
+<!-- jQuery file upload -->
+<script src="{{ asset('js/dropify.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        // Basic
+        $('.dropify').dropify();
 
+        var drEvent = $('#input-file-events').dropify();
+        drEvent.on('dropify.beforeClear', function (event, element) {
+            return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+        });
+        drEvent.on('dropify.afterClear', function (event, element) {
+            alert('File deleted');
+        });
+        drEvent.on('dropify.errors', function (event, element) {
+            console.log('Has Errors');
+        });
+
+        var drDestroy = $('#input-file-to-destroy').dropify();
+        drDestroy = drDestroy.data('dropify')
+        $('#toggleDropify').on('click', function (e) {
+            e.preventDefault();
+            if (drDestroy.isDropified()) {
+                drDestroy.destroy();
+            } else {
+                drDestroy.init();
+            }
+        })
+    });
+</script>
+{{-- Toast js--}}
+<script src="{{ asset('js/jquery.toast.js') }}"></script>
+<script src="{{ asset('js/toastr.js') }}"></script>
+<script>
+
+    window.addEventListener('closeModalProduct', event => {
+        $(".modal").modal('hide');
+
+        setTimeout(function () {
+            location.reload();
+        }, 1000)
+    });
+
+    // $(function () {
+    //     if (performance.navigation.type) {
+    //         $("#alerttopright").fadeToggle(350);
+    //     }
+    // })
+
+    //Alerts
+    $(".myadmin-alert .closed").click(function (event) {
+        $(this).parents(".myadmin-alert").fadeToggle(350);
+        return false;
+    });
+    /* Click to close */
+    $(".myadmin-alert-click").click(function (event) {
+        $(this).fadeToggle(350);
+        return false;
+    });
+
+</script>
 
 @wireUiScripts
 <script src="//unpkg.com/alpinejs" defer></script>
