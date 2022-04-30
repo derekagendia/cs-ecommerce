@@ -34,7 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group( function () {
 });
 
 Route::get('/account-created', [\App\Http\Controllers\HomeController::class, 'pub'])->name('account-created');
-
+Route::get('/product-details/{slug}',[\App\Http\Controllers\ProductController::class, 'details'])->name('products.details');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

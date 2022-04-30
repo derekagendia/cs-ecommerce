@@ -13,7 +13,7 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled">
-                                <livewire:show-categories />
+                                <livewire:show-categories/>
                             </ul>
                         </div>
                     </div>
@@ -38,11 +38,13 @@
                                 <img src="./assets/img/csl1.jpg" style="height:400px; width:auto;" alt="Third slide">
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselId"
+                                data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselId"
+                                data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
@@ -66,114 +68,7 @@
 
     <section class="mt-3">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-sm-6 col-xs-3">
-
-                    <div class="card mb-2">
-                        <a href="product_details.html">
-                            <img src="./assets/img/dg2.jpg" class="card-img-top">
-                        </a>
-                        <div class="card-body">
-                            <h4>6000 F <span class="badge bg-primary badge-pill fw-light" style="font-size:10pt;">negotiable</span></h4>
-                            <p>Airpod Max</p>
-                            <ul class="list-unstyled pt-1">
-                                <li class="list-inline-item">
-                                    <a href="#" style="text-decoration: none;">
-                                        <div class="user" style="background-image:url('./assets/img/dg2.jpg'); size:cover;">
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item" style="position: absolute;">
-                                    Jonathan kent
-                                </li>
-                            </ul>
-
-
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col-lg-3 col-sm-6 col-xs-3">
-
-                    <div class="card mb-2">
-                        <a href="product_details.html">
-                            <img src="./assets/img/dg2.jpg" class="card-img-top">
-                        </a>
-                        <div class="card-body">
-                            <h4>6000 F <span class="badge bg-primary badge-pill fw-light" style="font-size:10pt;">negotiable</span></h4>
-                            <p>Airpod Max</p>
-                            <ul class="list-unstyled pt-1">
-                                <li class="list-inline-item">
-                                    <a href="#" style="text-decoration: none;">
-                                        <div class="user" style="background-image:url('./assets/img/dg2.jpg'); size:cover;">
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item" style="position: absolute;">
-                                    Jonathan kent
-                                </li>
-                            </ul>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-xs-3">
-
-                    <div class="card mb-2">
-                        <a href="javascript.js">
-                            <img src="./assets/img/dg2.jpg" class="card-img-top">
-                        </a>
-                        <div class="card-body">
-                            <h4>6000 F <span class="badge bg-primary badge-pill fw-light" style="font-size:10pt;">negotiable</span></h4>
-                            <p>Airpod Max</p>
-                            <ul class="list-unstyled pt-1">
-                                <li class="list-inline-item">
-                                    <a href="#" style="text-decoration: none;">
-                                        <div class="user" style="background-image:url('./assets/img/dg2.jpg'); size:cover;">
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item" style="position: absolute;">
-                                    Jonathan kent
-                                </li>
-                            </ul>
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-sm-6 col-xs-3">
-
-                    <div class="card mb-2">
-                        <a href="javascript.js">
-                            <img src="./assets/img/dg2.jpg" class="card-img-top">
-                        </a>
-                        <div class="card-body">
-                            <h4>6000 F <span class="badge bg-primary badge-pill fw-light" style="font-size:10pt;">negotiable</span></h4>
-                            <p>Airpod Max</p>
-                            <ul class="list-unstyled pt-1">
-                                <li class="list-inline-item">
-                                    <a href="#" style="text-decoration: none;">
-                                        <div class="user" style="background-image:url('./assets/img/dg2.jpg'); size:cover;">
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item" style="position: absolute;">
-                                    Jonathan kent
-                                </li>
-                            </ul>
-
-
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
+            <livewire:product-list/>
         </div>
     </section>
 
@@ -186,136 +81,7 @@
                 </div>
             </div>
             <!-- shops -->
-            <div class="row">
-                <div class="col-lg-3 col-sm-6 col-xs-6">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="shop-1 ms-2"></div>
-                                </div>
-                                <div class="col-md-8">
-                                    <p class="fw-bold">Jonathan Kent</p>
-                                    <a href="shopdetails.html" class="btn btn-primary btn-sm">View shop</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="shop-1 ms-2"></div>
-                                </div>
-                                <div class="col-md-8">
-                                    <p class="fw-bold">Jonathan Kent</p>
-                                    <a href="shopdetails.html" class="btn btn-primary btn-sm">View shop</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="shop-1 ms-2"></div>
-                                </div>
-                                <div class="col-md-8">
-                                    <p class="fw-bold">Jonathan Kent</p>
-                                    <a href="shopdetails.html" class="btn btn-primary btn-sm">View shop</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="shop-1 ms-2"></div>
-                                </div>
-                                <div class="col-md-8">
-                                    <p class="fw-bold">Jonathan Kent</p>
-                                    <a href="shopdetails.html" class="btn btn-primary btn-sm">View shop</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="shop-1 ms-2"></div>
-                                </div>
-                                <div class="col-md-8">
-                                    <p class="fw-bold">Jonathan Kent</p>
-                                    <a href="shopdetails.html" class="btn btn-primary btn-sm">View shop</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="shop-1 ms-2"></div>
-                                </div>
-                                <div class="col-md-8">
-                                    <p class="fw-bold">Jonathan Kent</p>
-                                    <a href="shopdetails.html" class="btn btn-primary btn-sm">View shop</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="shop-1 ms-2"></div>
-                                </div>
-                                <div class="col-md-8">
-                                    <p class="fw-bold">Jonathan Kent</p>
-                                    <a href="shopdetails.html" class="btn btn-primary btn-sm">View shop</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="shop-1 ms-2"></div>
-                                </div>
-                                <div class="col-md-8">
-                                    <p class="fw-bold">Jonathan Kent</p>
-                                    <a href="shopdetails.html" class="btn btn-primary btn-sm">View shop</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <livewire:shop-list/>
 
     </section>
 

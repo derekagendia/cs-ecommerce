@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,700;1,600&display=swap"
           rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
@@ -143,7 +145,13 @@
     </div>
 </footer>
 
-
+<script src=https://dev-touch.gutouch.com/touchpay/script/dev_touchpay-0.0.1.js type="text/javascript"></script>
+<script type="text/javascript">
+    function calltouchpay()
+    {
+        SendPaymentInfos(order_number,agency_code,secure_code,domain_name,url_redirection_success,url_redirection_failed,amount,city,email,clientFirstName,clientLastName);
+    }
+</script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 @wireUiScripts
 <script src="//unpkg.com/alpinejs" defer></script>

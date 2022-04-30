@@ -16,7 +16,9 @@ class Product extends Model
         'cover_img',
         'price_negociable',
         'shop_id',
-        'is_negociable'
+        'is_negociable',
+        'slug',
+        'categories_id'
     ];
 
     public function shop()
@@ -27,5 +29,10 @@ class Product extends Model
     public static function getProductShop($shop_id)
     {
         return Product::where('shop_id', $shop_id)->get();
+    }
+
+    public static function findBySlug($slug)
+    {
+        return static::where('slug',$slug)->firstOrFail();
     }
 }

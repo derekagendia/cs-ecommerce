@@ -10,7 +10,7 @@ class ShowCategories extends Component
     public function render()
     {
         $data = [
-            'category' => Category::all()
+            'category' => Category::orderByDesc('name')->paginate(5)
         ];
         return view('livewire.show-categories',$data);
     }

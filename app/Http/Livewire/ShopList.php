@@ -10,14 +10,10 @@ class ShopList extends Component
 {
     use WithPagination;
 
-    public $search = '';
-
-    protected $listeners = ['searchUpdated' => 'onSearchUpdate'];
-
     public function render()
     {
         return view('livewire.shop-list',[
-            'shops' => Shop::where('name','like',"%{$this->search}%")->where('is_active',1)->paginate(5)
+            'shops' => Shop::paginate(8)
         ]);
     }
 

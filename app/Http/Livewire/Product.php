@@ -6,6 +6,8 @@ use App\Models\Shop;
 use Livewire\Component;
 use \App\Models\Product as Produit;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Str;
+use TCG\Voyager\Models\Category;
 
 class Product extends Component
 {
@@ -16,8 +18,9 @@ class Product extends Component
     public $description;
     public $price;
     public $cover_img;
-    public $price_negociable;
+    public $price_negociable = 0;
     public $product_id;
+    public $categories_id = null;
 
     protected function rules()
     {
@@ -35,6 +38,8 @@ class Product extends Component
     {
         $data = $this->validate();
         $data['shop_id'] = auth()->user()->shop->id;
+        $data['slug'] = Str::slug($this->name);
+        $data['categories_id'] = $this->categories_id;
         $image = $this->cover_img->storeAs('shop-product-images/' . auth()->user()->shop->name, date('Ymd') . $this->cover_img->getClientOriginalName(), 'public');
         $data['cover_img'] = '/storage/' . $image;
 
@@ -46,6 +51,7 @@ class Product extends Component
 
         } catch (\Exception $error) {
 
+            session()->flash('message', $error->getMessage());
 
         }
     }
@@ -55,6 +61,7 @@ class Product extends Component
     {
         return view('livewire.product', [
             'products' => Produit::getProductShop(auth()->user()->shop->id),
+            'categories' => Category::all(),
         ])
             ->extends('layouts.app')
             ->section('content');
@@ -72,7 +79,7 @@ class Product extends Component
             $this->price = $product->price;
             $this->price_negociable = $product->price_negociable;
             $this->cover_img = $product->cover_img;
-
+            $this->categories_id = $product->categories_id;
         }
     }
 
@@ -83,9 +90,26 @@ class Product extends Component
         $image = $this->cover_img->storeAs('shop-product-images/' . auth()->user()->shop->name, date('Ymd') . $this->cover_img->getClientOriginalName(), 'public');
         $data['cover_img'] = '/storage/' . $image;
 
-        Produit::where('id', $this->product_id)->update($data);
-        $this->dispatchBrowserEvent('closeModalProduct');
-        session()->flash('message', 'Product successfully updated.');
+        try{
+
+            $produit = Produit::find($this->product_id);
+
+            $produit->name = $data['name'];
+            $produit->slug = Str::slug($data['name']);
+            $produit->cover_img = $data['cover_img'];
+            $produit->description = $data['description'];
+            $produit->is_negociable = $data['is_negociable'];
+            $produit->price = $data['price'];
+            $produit->price_negociable = $data['price_negociable'];
+            $produit->categories_id = is_null($this->categories_id) ? $produit->categories_id : $this->categories_id;
+
+            $produit->save();
+
+            $this->dispatchBrowserEvent('closeModalProduct');
+            session()->flash('message', 'Product successfully updated.');
+        }catch(\Exception $error) {
+            session()->flash('message', $error->getMessage());
+        }
     }
 
     public function deleteProduct(int $id)

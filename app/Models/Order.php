@@ -31,6 +31,6 @@ class Order extends Model
 
     public static function getOwnOrderShop($shop_id)
     {
-        return Order::where('shop_id', $shop_id)->paginate(5);
+        return Order::where('shop_id', $shop_id)->get();
     }
 }

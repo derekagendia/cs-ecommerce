@@ -57,7 +57,9 @@
                                                     class="fcbtn btn btn-success btn-outline btn-1d" data-toggle="modal"
                                                     data-target="#updateproduct">Edit
                                             </button>
-                                            <button wire:click="deleteProduct({{$product->id}})" class="fcbtn btn btn-danger btn-outline btn-1d">Delete</button>
+                                            <button wire:click="deleteProduct({{$product->id}})"
+                                                    class="fcbtn btn btn-danger btn-outline btn-1d">Delete
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -87,6 +89,16 @@
                                         <label for="message-text" class="control-label">Description:</label>
                                         <textarea wire:model.defer="description" class="form-control"
                                                   id="message-text1"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Category</label>
+                                        <select wire:model.defer="categories_id" class="form-control"
+                                                data-placeholder="Choose a Category" tabindex="1">
+                                            <option value="null">--Select your Category--</option>
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group @error('price') has-error @enderror">
                                         <label for="recipient-name" class="control-label">Price</label>
@@ -143,9 +155,20 @@
                                         <textarea wire:model.defer="description" class="form-control"
                                                   id="message-text1"></textarea>
                                     </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Category</label>
+                                        <select wire:model.defer="categories_id" class="form-control"
+                                                data-placeholder="Choose a Category" tabindex="1">
+                                            <option value="null">--Select your Category--</option>
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     <div class="form-group @error('price') has-error @enderror">
                                         <label for="recipient-name" class="control-label">Price</label>
-                                        <input data-mask="XAF 000-000" wire:model.defer="price" type="text" class="form-control"
+                                        <input data-mask="XAF 000-000" wire:model.defer="price" type="text"
+                                               class="form-control"
                                                id="recipient-name1">
                                     </div>
                                     <div class="form-group @error('is_negociable') has-error @enderror">
