@@ -11,9 +11,12 @@ class ReceiveController extends Controller
     public function receive(Request $request)
     {
         // when user clic to the link we mark the order as delivered to true
-        delivery_confirms::where('token',$request->token)->update([
+        $orderfind = delivery_confirms::where('token',$request->token)->update([
            'delivery' => 1
         ]);
+
+        if(!$orderfind)
+            abort(403,'Token Expired Please contact your shop to resend you the confirmation link');
 
         return view('confirm-delivery-product');
     }
