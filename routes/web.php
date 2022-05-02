@@ -30,6 +30,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group( function () {
 
         Route::get('/products',\App\Http\Livewire\Product::class)->name('products.show');
         Route::get('/orders',\App\Http\Livewire\OrderTable::class)->name('orders.show');
+        Route::get('/clients',\App\Http\Livewire\ShopClient::class)->name('client.show');
 
     });
 });
@@ -37,6 +38,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group( function () {
 Route::get('/account-created', [\App\Http\Controllers\HomeController::class, 'pub'])->name('account-created');
 Route::get('/product-details/{slug}',[\App\Http\Controllers\ProductController::class, 'details'])->name('products.details');
 Route::get('/products-receive/{token}',[\App\Http\Controllers\ReceiveController::class,'receive'])->name('products.received');
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });

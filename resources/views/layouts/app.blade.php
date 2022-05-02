@@ -160,7 +160,7 @@
                         <i class="linea-icon linea-basic fa-fw icon-people"></i><span
                             class="hide-menu">Manage User<span class="fa arrow"></span></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a href="javascript:void(0)"><i class="linea-icon linea-basic fa-fw icon-user"></i><span
+                        <li><a href="{{ route('client.show') }}"><i class="linea-icon linea-basic fa-fw icon-user"></i><span
                                     class="hide-menu">Client</span></a></li>
                     </ul>
                 </li>
