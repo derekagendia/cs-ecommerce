@@ -3,46 +3,62 @@
 namespace App\Http\Livewire;
 
 use App\Models\Order;
+use App\Models\User;
+use App\Models\delivery_confirms;
 use Livewire\Component;
-use Livewire\WithPagination;
+use Illuminate\Support\Str;
+use App\Mail\DeliveryProduct;
+use Illuminate\Support\Facades\Mail;
+use DB;
+use Carbon\Carbon;
+
 
 class OrderTable extends Component
 {
-    use WithPagination;
-
-    public $search = '';
 
     public function render()
     {
-        return view('livewire.order-table',
+        return view('livewire.order-list',
             [
                 'orders' => Order::getOwnOrderShop(auth()->user()->shop->id)
             ]
-        );
+        )->extends('layouts.app')->section('content');
 
     }
 
-    public function is_paid(int $id)
+    public function is_delivery(int $id)
     {
         $order = Order::find($id);
 
-        if($order->is_paid)
-        {
-            $order->is_paid = Order::IS_NOT_PAID;
-            $order->save();
-        }else
-        {
-            $order->is_paid = Order::IS_PAID;
-            $order->save();
-        }
+        $order->status = 'processing';
+        $order->save();
+
+        //send mail to client to confirm the reception of product
+
+
+        $client = User::Where('email', $order->user->email)->firstOrFail();
+
+        $token = Str::random(64);
+
+        delivery_confirms::updateOrCreate(
+            ['order_number' => $order->order_number],
+            [
+                'email' => $client->email,
+                'delivery' => 0,
+                'token' => $token,
+                'order_number' => $order->order_number,
+                'shop_name' => auth()->user()->shop->name,
+                'phone_to_withdrawal' => $order->shop->owner->phone,
+            ]
+        );
+
+        Mail::to($client)->send(new DeliveryProduct($client,$token));
+
     }
 
     public function deleteOrder(int $id)
     {
         Order::find($id)->delete();
-
-        $this->dispatchBrowserEvent(
-            'alert', ['type' => 'success',  'message' => 'Order successfully deleted.']);
     }
 
     public function paginationView()

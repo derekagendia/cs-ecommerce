@@ -51,11 +51,6 @@
             <ul class="navbar-nav navbar-nav-hover ms-auto">
                 @if(Route::has('login'))
                     @auth
-                        <li class="nav-item px-3">
-                            <a class="nav-link" href="#">
-                                My bids
-                            </a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">user account</a>
@@ -99,12 +94,9 @@
 
 <!-- Modal -->
 <livewire:save-shop/>
-
 <!-- end of navbar -->
 
-
 @yield('content')
-
 
 <footer class="mt-3 pb-2 pt-3 bg-dark text-white">
     <div class="container">
@@ -145,11 +137,10 @@
     </div>
 </footer>
 
-<script src=https://dev-touch.gutouch.com/touchpay/script/dev_touchpay-0.0.1.js type="text/javascript"></script>
+<script src="https://dev-touch.gutouch.com/touchpay/script/dev_touchpay-0.0.1.js" type="text/javascript"></script>
 <script type="text/javascript">
-    function calltouchpay()
-    {
-        SendPaymentInfos(order_number,agency_code,secure_code,domain_name,url_redirection_success,url_redirection_failed,amount,city,email,clientFirstName,clientLastName);
+    function calltouchpay() {
+        SendPaymentInfos(order_number, agency_code, secure_code, domain_name, url_redirection_success, url_redirection_failed, amount, city, email, clientFirstName, clientLastName);
     }
 </script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
@@ -157,7 +148,7 @@
 <script src="//unpkg.com/alpinejs" defer></script>
 <livewire:scripts/>
 
-<script >
+<script>
     window.addEventListener('closeModal', event => {
         $(".modal").modal('hide');
     })

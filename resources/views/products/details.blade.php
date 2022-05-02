@@ -87,7 +87,6 @@
                                                        data-bs-target="#modelId">Negotiate</a>
                         @endif
                         <a href="#" class="btn btn-primary me-2 mt-1">Buy Now</a>
-                        <input class="btn btn-primary me-2 mt-1" type=button onclick='calltouchpay()' value="continuer"/>
 
                     </p>
                     <p>

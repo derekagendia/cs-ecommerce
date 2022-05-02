@@ -2,7 +2,6 @@
     {{-- Care about people's approval and you will be their prisoner. --}}
     <div class="row">
         @forelse($shops as $shop)
-            <div class="row">
                 <div class="col-lg-3 col-sm-6 col-xs-6">
                     <div class="card mb-3">
                         <div class="card-body">
@@ -12,14 +11,13 @@
                                 </div>
                                 <div class="col-md-8">
                                     <p class="fw-bold">{{ $shop->name }}</p>
-                                    <a href="shopdetails.html" class="btn btn-primary btn-sm">View shop</a>
+                                    <a href="shopdetails.html" class="btn btn-primary btn-sm">Details Shop</a>
                                 </div>
                             </div>
 
                         </div>
                     </div>
                 </div>
-            </div>
         @empty
         @endforelse
     </div>

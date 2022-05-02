@@ -30,9 +30,7 @@ class AddProduct extends Component
     {
         $data = $this->validate();
 
-//        $data['category_id'] = $this->category_id;
         $data['name'] = ucfirst($this->name);
-        //$data['slug'] = Str::slug($this->name);
 
         auth()->user()->shop->products()->create($data);
 
