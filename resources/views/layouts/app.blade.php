@@ -146,10 +146,10 @@
                         <li><a href="{{ route('products.show') }}"><i data-icon=")"
                                                                       class="linea-icon linea-basic fa-fw"></i><span
                                     class="hide-menu">Products</span></a></li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <i class="fa-fw">S</i><span class="hide-menu"> Categories</span></a>
-                        </li>
+{{--                        <li>--}}
+{{--                            <a href="javascript:void(0)">--}}
+{{--                                <i class="fa-fw">S</i><span class="hide-menu"> Categories</span></a>--}}
+{{--                        </li>--}}
                         <li>
                             <a href="{{ route('orders.show') }}">
                                 <i class="icon-basket"></i><span class="hide-menu"> Orders</span></a>

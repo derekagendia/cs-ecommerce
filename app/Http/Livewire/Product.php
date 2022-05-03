@@ -90,7 +90,7 @@ class Product extends Component
         $image = $this->cover_img->storeAs('shop-product-images/' . auth()->user()->shop->name, date('Ymd') . $this->cover_img->getClientOriginalName(), 'public');
         $data['cover_img'] = '/storage/' . $image;
 
-        try{
+        try {
 
             $produit = Produit::find($this->product_id);
 
@@ -107,7 +107,7 @@ class Product extends Component
 
             $this->dispatchBrowserEvent('closeModalProduct');
             session()->flash('message', 'Product successfully updated.');
-        }catch(\Exception $error) {
+        } catch (\Exception $error) {
             session()->flash('message', $error->getMessage());
         }
     }

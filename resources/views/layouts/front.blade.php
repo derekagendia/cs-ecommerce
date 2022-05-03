@@ -57,7 +57,9 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownId">
 
                                 @if(isset(auth()->user()->shop) && auth()->user()->shop->is_active && (auth()->user()->shop->user_id == auth()->user()->id))
-                                    <a class="dropdown-item" href="{{ route('dashboard') }}">My store</a>
+                                    @if(auth()->user()->hasRole('seller'))
+                                        <a class="dropdown-item" href="{{ route('dashboard') }}">My store</a>
+                                    @endif
                                 @else
                                     @if(isset(auth()->user()->shop->is_active) && !auth()->user()->shop->is_active && (auth()->user()->shop->user_id == auth()->user()->id))
                                         <a class="dropdown-item" href="#">Store under verification</a>
