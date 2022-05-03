@@ -41,7 +41,7 @@ class Product extends Component
         $data['slug'] = Str::slug($this->name);
         $data['categories_id'] = $this->categories_id;
         $image = $this->cover_img->storeAs('shop-product-images/' . auth()->user()->shop->name, date('Ymd') . $this->cover_img->getClientOriginalName(), 'public');
-        $data['cover_img'] = '/storage/' . $image;
+        $data['cover_img'] = $image;
 
         try {
 

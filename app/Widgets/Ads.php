@@ -2,13 +2,13 @@
 
 namespace App\Widgets;
 
-use App\Models\Product;
+use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Widgets\BaseDimmer;
 
-class Products extends BaseDimmer
+class Ads extends BaseDimmer
 {
     /**
      * The configuration array.
@@ -23,16 +23,16 @@ class Products extends BaseDimmer
      */
     public function run()
     {
-        $count = Product::count();
-        $string = 'Product ';
+        $count = Event::count();
+        $string = 'Ads ';
 
         return view('voyager::dimmer', array_merge($this->config, [
-            'icon'   => 'voyager-lab',
+            'icon'   => 'voyager-lighthouse',
             'title'  => "{$count} {$string}",
             'text'   => __('voyager::dimmer.post_text', ['count' => $count, 'string' => Str::lower($string)]),
             'button' => [
-                'text' => __('View Products'),
-                'link' => route('voyager.products.index'),
+                'text' => __('View Ads'),
+                'link' => route('voyager.events.index'),
             ],
             'image' => voyager_asset('images/widget-backgrounds/02.jpg'),
         ]));

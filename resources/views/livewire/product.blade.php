@@ -50,7 +50,7 @@
                                         <td>{{ $product->is_negociable ? number_format($product->price_negociable). ' FCFA' : 'NOT NEGOCIABLE' }}</td>
                                         <td class="badge rounded-pill {{ $product->is_negociable ? 'bg-success' : 'bg-danger' }}">{{ $product->is_negociable ? 'yes' : 'no' }}</td>
                                         <td>{{ $product->description }}</td>
-                                        <td><img src="{{ asset($product->cover_img) }}" class="img img-circle" alt="img"
+                                        <td><img src="{{ asset(Voyager::image($product->cover_img)) }}" class="img img-circle" alt="img"
                                                  style="height: 50px;"/></td>
                                         <td class="text-nowrap">
                                             <button wire:click="productEdit({{$product->id}})"

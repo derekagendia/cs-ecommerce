@@ -6,7 +6,7 @@
 
                 <div class="card mb-2">
                     <a href="{{ route('products.details',$product->slug) }}">
-                        <img src="{{ asset($product->cover_img) }}" class="card-img-top">
+                        <img src="{{ asset(Voyager::image($product->cover_img)) }}" class="card-img-top">
                     </a>
                     <div class="card-body">
                         <h4>{{ number_format($product->price) }} FCFA <span class="badge {{ $product->is_negociable ? 'bg-primary' : 'bg-danger' }} badge-pill fw-light"

@@ -28,15 +28,16 @@
                             <li data-bs-target="#carouselId" data-bs-slide-to="2"></li>
                         </ol>
                         <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active">
-                                <img src="./assets/img/csl1.jpg" style="height:400px; width:auto;" alt="First slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="./assets/img/csl1.jpg" style="height:400px; width:auto;" alt="second slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="./assets/img/csl1.jpg" style="height:400px; width:auto;" alt="Third slide">
-                            </div>
+                            @foreach(\App\Models\Event::where('active',1)->get() as $ads)
+                                @if($loop->iteration <= 3)
+                                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                        <img src="{{ asset(Voyager::image($ads->image)) }}"
+                                             style="height:400px; width:auto;"
+                                             alt="First slide">
+                                    </div>
+                                @endif
+                            @endforeach
+
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselId"
                                 data-bs-slide="prev">
