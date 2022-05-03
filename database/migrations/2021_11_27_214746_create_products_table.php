@@ -17,10 +17,10 @@ class CreateProductsTable extends Migration
 
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('price_negociable')->nullable();
+            $table->unsignedBigInteger('price_negociable')->nullable();
             $table->boolean('is_negociable')->default(false);
             $table->mediumText('description');
-            $table->float('price');
+            $table->unsignedBigInteger('price');
             $table->string('cover_img')->nullable();
 
             $table->unsignedBigInteger('shop_id')->nullable();

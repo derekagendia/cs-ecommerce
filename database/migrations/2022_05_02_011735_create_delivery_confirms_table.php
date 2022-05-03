@@ -16,7 +16,7 @@ class CreateDeliveryConfirmsTable extends Migration
         Schema::create('delivery_confirms', function (Blueprint $table) {
             $table->id();
             $table->string('email');
-            $table->boolean('delivery');
+            $table->boolean('delivery')->default(0);
             $table->string('token');
             $table->string('order_number')->unique();
             $table->string('shop_name');

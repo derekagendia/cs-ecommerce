@@ -35,7 +35,6 @@ class OrderTable extends Component
 
         //send mail to client to confirm the reception of product
 
-
         $client = User::Where('email', $order->user->email)->firstOrFail();
 
         $token = Str::random(64);
@@ -44,9 +43,9 @@ class OrderTable extends Component
             ['order_number' => $order->order_number],
             [
                 'email' => $client->email,
-                'delivery' => 0,
                 'token' => $token,
                 'order_number' => $order->order_number,
+                'total_amount_to_withdrawal' => $order->grand_total,
                 'shop_name' => auth()->user()->shop->name,
                 'phone_to_withdrawal' => $order->shop->owner->phone,
             ]

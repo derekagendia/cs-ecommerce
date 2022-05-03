@@ -148,6 +148,7 @@ return [
             'App\\Widgets\\Products',
             'App\\Widgets\\Shops',
             'App\\Widgets\\Orders',
+            'App\\Widgets\\Withdraw',
         ],
 
     ],
