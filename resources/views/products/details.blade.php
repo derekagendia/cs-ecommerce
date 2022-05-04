@@ -51,7 +51,7 @@
                         </ol>
                         <div class="carousel-inner" role="listbox">
                             <div class="carousel-item active">
-                                <img src="{{ asset($details->cover_img) }}" class="img-fluid" alt="First slide">
+                                <img src="{{ asset(Voyager::image($details->cover_img)) }}" class="img-fluid" alt="First slide">
                             </div>
                         </div>
                     </div>
@@ -101,39 +101,4 @@
             </div>
         </div>
     </section>
-
-    {{--    <section class="mt-5">--}}
-    {{--        <div class="container">--}}
-    {{--            <div class="row">--}}
-    {{--                <div class="col">--}}
-    {{--                    <h6 class="fw-bold text-uppercase">Detailed Info</h6>--}}
-    {{--                    <hr>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-
-    {{--    </section>--}}
-
-    {{--    <section class="mt-3">--}}
-    {{--        <div class="container">--}}
-    {{--            <div class="row justify-content-center">--}}
-    {{--                <div class="col-lg-8 col-sm-6 col-xs-3">--}}
-
-    {{--                    lorem ipsum dolore annuit apsunit elts dolore is not a dummy text contrary to popular believes--}}
-    {{--                    but its simply used to fill up areas with text while waiting for the real contentlorem--}}
-    {{--                    ipsum dolore annuit apsunit elts dolore is not a dummy text contrary to popular believes--}}
-    {{--                    but its simply used to fill up areas with text while waiting for the real content--}}
-    {{--                    lorem ipsum dolore annuit apsunit elts dolore is not a dummy text contrary to popular believes--}}
-    {{--                    but its simply used to fill up areas with text while waiting for the real content--}}
-    {{--                    lorem ipsum dolore annuit apsunit elts dolore is not a dummy text contrary to popular believes--}}
-    {{--                    but its simply used to fill up areas with text while waiting for the real content--}}
-    {{--                    lorem ipsum dolore annuit apsunit elts dolore is not a dummy text contrary to popular believes--}}
-    {{--                    but its simply used to fill up areas with text while waiting for the real content--}}
-    {{--                    lorem ipsum dolore annuit apsunit elts dolore is not a dummy text contrary to popular believes--}}
-    {{--                    but its simply used to fill up areas with text while waiting for the real content--}}
-    {{--                </div>--}}
-
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </section>--}}
 @endsection
