@@ -25,6 +25,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group( function () {
     Route::post('/pay',[\App\Http\Controllers\PaymentController::class,'sendPayment'])->name('pay');
     Route::get('/callback',[\App\Http\Controllers\PaymentController::class,'callback'])->name('callback');
     Route::post('/check',[\App\Http\Controllers\PaymentController::class,'isGoodPrice'])->name('check-price');
+    Route::post('/check-status',[\App\Http\Controllers\PaymentController::class,'checkStatus'])->name('check-status');
 
     Route::middleware('active')->prefix('dashboard')->group(function() {
 

@@ -94,11 +94,12 @@
                     </ul>
                     <p>
                         @if($details->is_negociable)
-                          @auth  <a href="#" class="btn btn-primary me-2 mt-1" data-bs-toggle="modal"
-                               data-bs-target="#modelId">Negotiate</a> @endauth
+                            @auth  <a href="#" class="btn btn-primary me-2 mt-1" data-bs-toggle="modal"
+                                      data-bs-target="#modelId">Negotiate</a> @endauth
                         @endif
-                      @auth  <a data-bs-toggle="modal" data-bs-target="#buyProduct" class="btn btn-primary me-2 mt-1">Buy</a> @endauth
-                      @guest  <a href="{{ route('login') }}" class="btn btn-primary me-2 mt-1">Login To Buy</a> @endguest
+                        @auth  <a data-bs-toggle="modal" data-bs-target="#buyProduct" class="btn btn-primary me-2 mt-1">Buy</a> @endauth
+                        @guest  <a href="{{ route('login') }}" class="btn btn-primary me-2 mt-1">Login To
+                            Buy</a> @endguest
 
                     </p>
                     <p>
@@ -232,15 +233,15 @@
             // if the request failed or succeeded
             request.always(function (response) {
                 // Reenable the inputs
-                if(response.status === 'FAILED') {
+                if (response.status === 'FAILED') {
                     Swal.fire(
-                        'Good job!',
+                        'Oops Failed!',
                         response.message,
                         'error'
                     )
                 }
 
-                if(response.status === 'SUCCESS') {
+                if (response.status === 'SUCCESS') {
                     Swal.fire(
                         'Good job!',
                         response.message,
@@ -252,9 +253,59 @@
 
         })
 
-        function checkPayment()
-        {
+        function checkPayment(order_id) {
+            // Fire off the request to /form.php
+            let id = order_id;
+            let request;
 
+            request = $.ajax({
+                    url: "{{ route('check-status') }}",
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: "post",
+                    data: { 'order_id': id }
+                });
+
+            request.done(function (response) {
+
+                if(response.status === 'PENDING') {
+                    checkPayment(id);
+                }
+
+                if(response.status === 'FAILED') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something is wrong',
+                    })
+                }
+
+                if(response.status === 'NOTFOUND') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Transaction Aborted',
+                    })
+                }
+
+                if(response.status === 'SUCCESS') {
+
+                    Swal.fire(
+                        'Good job!',
+                        'Transaction Complete You Merchand will contact you!',
+                        'success'
+                    )
+                }
+            })
+
+            request.fail(function () {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something is wrong',
+                })
+            })
         }
 
         $('#payment_form').submit(function (e) {
@@ -307,6 +358,7 @@
                         'Please check your phone and complete the transaction ',
                         'info'
                     )
+                    checkPayment(response.idFromClient);
                 }
             });
 
@@ -330,15 +382,15 @@
             request.always(function (response) {
                 // Reenable the inputs
 
-                if(response.status === 'FAILED') {
+                if (response.status === 'FAILED') {
                     Swal.fire(
-                        'Good job!',
+                        'Oops Operation Failed!',
                         response.message,
                         'error'
                     )
                 }
 
-                if(response.status === 'SUCCESS') {
+                if (response.status === 'SUCCESS') {
                     Swal.fire(
                         'Good job!',
                         response.message,

@@ -20,7 +20,7 @@ class PaymentController extends Controller
         $order->shipping_state = auth()->user()->name;
         $order->shipping_city = request()->ip();
         $order->shipping_address = request()->ip();
-        $order->shipping_phone = auth()->user()->phone;
+        $order->shipping_phone = $request->phone;
         $order->shipping_zipcode = '0237';
 
         if (!$request->has('billing_fullname')) {
@@ -28,14 +28,14 @@ class PaymentController extends Controller
             $order->billing_state = auth()->user()->name;
             $order->billing_city = request()->ip();
             $order->billing_address = request()->ip();
-            $order->billing_phone = auth()->user()->phone;
+            $order->billing_phone = $request->phone;
             $order->billing_zipcode = '0237';
         } else {
             $order->billing_fullname = auth()->user()->name;
             $order->billing_state = auth()->user()->name;
             $order->billing_city = request()->ip();
             $order->billing_address = request()->ip();
-            $order->billing_phone = auth()->user()->phone;
+            $order->billing_phone = $request->phone;
             $order->billing_zipcode = '0237';
         }
 
@@ -80,6 +80,11 @@ class PaymentController extends Controller
         }
 
       return  $this->sendPayment($request);
+    }
+
+    public function checkStatus(Request $request)
+    {
+        return PaymentApiController::checkStatus($request->order_id);
     }
 
     public function callback()
