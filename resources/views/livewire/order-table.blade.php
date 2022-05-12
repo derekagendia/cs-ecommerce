@@ -55,12 +55,13 @@
                                                 <tbody>
                                                 @forelse($orders as $order)
                                                     <tr>
+                                                        {{  }}
                                                         <td><img src="{{ asset($order->user->profile_photo_url) }}"
                                                                  class="mr-2 rounded-circle profile-sm">{{ $order->user->name }}
                                                         </td>
                                                         <td><a href="#" style="text-decoration:none;">{{ $order->order_number }}</a></td>
                                                         <td>{{ $order->created_at->format('d/m/Y') }}</td> <!-- 31/08/2021 -->
-                                                        <td>{{ $order->payment_gateway == 1 ? 'MTN MONEY' : 'ORANGE MONEY' }}</td>
+                                                        <td>{{ $order->payment_method }}</td>
                                                         <td>XAF {{ number_format($order->grand_total) }}</td>
                                                         <td><span
                                                                 class="shape-xs rounded-circle bg-success mr-2"></span><span

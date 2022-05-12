@@ -21,7 +21,9 @@
         "symfony/postmark-mailer": "^6.0",
         "tcg/voyager": "^1.5",
         "wildbit/swiftmailer-postmark": "^3.3",
-        "wireui/wireui": "^1.0"
+        "wireui/wireui": "^1.0",
+      "ext-curl": "*",
+        "ext-json": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

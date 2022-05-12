@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +19,7 @@
     <livewire:styles/>
     <wireui:scripts/>
     <script src="//unpkg.com/alpinejs" defer></script>
+
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
 
@@ -139,13 +141,30 @@
     </div>
 </footer>
 
-<script src="https://dev-touch.gutouch.com/touchpay/script/dev_touchpay-0.0.1.js" type="text/javascript"></script>
-<script type="text/javascript">
-    function calltouchpay() {
-        SendPaymentInfos(order_number, agency_code, secure_code, domain_name, url_redirection_success, url_redirection_failed, amount, city, email, clientFirstName, clientLastName);
-    }
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    // addEventListener version
+    window.addEventListener('offline', (event) => {
+        console.log("The network connection has been lost.");
+
+        Swal.fire(
+            'Oops Network Lost!',
+            'The network connection has been lost',
+            'error'
+        )
+    });
+
 </script>
+@yield('js')
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 @wireUiScripts
 <script src="//unpkg.com/alpinejs" defer></script>
 <livewire:scripts/>

@@ -8,18 +8,28 @@
                     <h5 class="modal-title">How much do you propose</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="form-check">
-                        <input class="form-text-input" type="text" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-text-label" for="flexRadioDefault1">
-                           Amount you want to pay
-                        </label>
+                <form id="payment_negociable">
+                    <div class="modal-body">
+                        <div class="form-check">
+                            <select name="operator">
+                                <option selected value="PAIEMENTMARCHAND_MTN_CM">MTN</option>
+                                <option value="CM_PAIEMENTMARCHAND_OM_TP">ORANGE</option>
+                            </select>
+                            <input type="number" class="pb-2 " name="phone" placeholder="Phone number"/>
+                            <input class="form-text-input mt-2" type="text" name="price_negociable"
+                                   placeholder="New amount">
+                            <input name="shop_id" type="hidden" class="pb-2" placeholder="Phone number"
+                                   value="{{ $details->shop->id }}"/>
+                            <input name="product_id" type="hidden" class="pb-2" placeholder="Phone number"
+                                   value="{{ $details->id }}"/>
+
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Buy Now</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Pay Now</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -51,7 +61,8 @@
                         </ol>
                         <div class="carousel-inner" role="listbox">
                             <div class="carousel-item active">
-                                <img src="{{ asset(Voyager::image($details->cover_img)) }}" class="img-fluid" alt="First slide">
+                                <img src="{{ asset(Voyager::image($details->cover_img)) }}" class="img-fluid"
+                                     alt="First slide">
                             </div>
                         </div>
                     </div>
@@ -83,22 +94,259 @@
                     </ul>
                     <p>
                         @if($details->is_negociable)
-                            <a href="#" class="btn btn-primary me-2 mt-1" data-bs-toggle="modal"
-                                                       data-bs-target="#modelId">Negotiate</a>
+                          @auth  <a href="#" class="btn btn-primary me-2 mt-1" data-bs-toggle="modal"
+                               data-bs-target="#modelId">Negotiate</a> @endauth
                         @endif
-                        <a href="#" class="btn btn-primary me-2 mt-1">Buy Now</a>
+                      @auth  <a data-bs-toggle="modal" data-bs-target="#buyProduct" class="btn btn-primary me-2 mt-1">Buy</a> @endauth
+                      @guest  <a href="{{ route('login') }}" class="btn btn-primary me-2 mt-1">Login To Buy</a> @endguest
 
                     </p>
                     <p>
                         <a class="btn btn-success btn-sm"
                            href="https://wa.me/{{$details->shop->owner->phone}}?text=Hello i just order this product {{ route('products.details',[$details->slug]) }}"
                            target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Share on WhatsApp</a>
-                        <a href="#" class="btn btn-primary btn-sm">Share on Facebook</a>
                     </p>
 
 
                 </div>
             </div>
         </div>
+
+
+        <div class="modal fade" id="buyProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Buy Product</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="payment_form">
+                        <div class="modal-body">
+                            <select name="operator">
+                                <option selected value="PAIEMENTMARCHAND_MTN_CM">MTN</option>
+                                <option value="CM_PAIEMENTMARCHAND_OM_TP">ORANGE</option>
+                            </select>
+                            <input name="phone" type="number" class="pb-2" placeholder="Phone number"/>
+                            <input name="amount" type="hidden" class="pb-2" placeholder="Phone number"
+                                   value="{{ $details->price }}"/>
+                            <input name="shop_id" type="hidden" class="pb-2" value="{{ $details->shop->id }}"/>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                            </button>
+                            <button id="pay" type="submit" class="btn btn-primary">Pay now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </section>
+
+
+@endsection
+
+@section('js')
+    <script>
+        // Variable to hold request
+        var request;
+
+        $('#payment_negociable').submit(function (e) {
+            e.preventDefault();
+            // Abort any pending request
+            if (request) {
+                request.abort();
+            }
+
+            // setup some local variables
+            var $form = $(this);
+
+            // Let's select and cache all the fields
+            var $inputs = $form.find("input, select, button");
+
+            // Serialize the data in the form
+            var serializedData = $form.serialize();
+
+            // Let's disable the inputs for the duration of the Ajax request.
+            $inputs.prop("disabled", true);
+
+            // Fire off the request to /form.php
+            request = $.ajax({
+                url: "{{ route('check-price') }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "post",
+                data: serializedData
+            });
+
+            // Callback handler that will be called on success
+            request.done(function (response, textStatus, jqXHR) {
+                // Log a message to the console
+
+                $(".modal").modal('hide');
+
+                console.log(response);
+
+                if (response.status === 302) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: response.message,
+                    })
+                }
+
+                if (response.status === 300) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: response.detailMessage,
+                    })
+                }
+
+                if (response.status === 'INITIATED') {
+                    Swal.fire(
+                        'PAYMENT INITIATED',
+                        'Please check your phone and complete the transaction ',
+                        'info'
+                    )
+                }
+
+            });
+
+            // Callback handler that will be called on failure
+            request.fail(function (jqXHR, textStatus, errorThrown) {
+                // Log the error to the console
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: errorThrown,
+                })
+                console.error(
+                    "The following error occurred: " +
+                    textStatus, errorThrown
+                );
+            });
+
+            // Callback handler that will be called regardless
+            // if the request failed or succeeded
+            request.always(function (response) {
+                // Reenable the inputs
+                if(response.status === 'FAILED') {
+                    Swal.fire(
+                        'Good job!',
+                        response.message,
+                        'error'
+                    )
+                }
+
+                if(response.status === 'SUCCESS') {
+                    Swal.fire(
+                        'Good job!',
+                        response.message,
+                        'success'
+                    )
+                }
+                $inputs.prop("disabled", false);
+            });
+
+        })
+
+        function checkPayment()
+        {
+
+        }
+
+        $('#payment_form').submit(function (e) {
+            e.preventDefault();
+
+            // Abort any pending request
+            if (request) {
+                request.abort();
+            }
+
+            // setup some local variables
+            var $form = $(this);
+
+            // Let's select and cache all the fields
+            var $inputs = $form.find("input, select, button");
+
+            // Serialize the data in the form
+            var serializedData = $form.serialize();
+
+            // Let's disable the inputs for the duration of the Ajax request.
+            $inputs.prop("disabled", true);
+
+            // Fire off the request to /form.php
+            request = $.ajax({
+                url: "{{ route('pay') }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "post",
+                data: serializedData
+            });
+
+            // Callback handler that will be called on success
+            request.done(function (response, textStatus, jqXHR) {
+                // Log a message to the console
+
+                $(".modal").modal('hide');
+
+                if (response.status === 300) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: response.detailMessage,
+                    })
+                }
+
+                if (response.status === 'INITIATED') {
+                    Swal.fire(
+                        'PAYMENT INITIATED',
+                        'Please check your phone and complete the transaction ',
+                        'info'
+                    )
+                }
+            });
+
+            // Callback handler that will be called on failure
+            request.fail(function (jqXHR, textStatus, errorThrown) {
+                // Log the error to the console
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: errorThrown,
+                })
+                console.error(
+                    "The following error occurred: " +
+                    textStatus, errorThrown
+                );
+            });
+
+            // Callback handler that will be called regardless
+            // if the request failed or succeeded
+            request.always(function (response) {
+                // Reenable the inputs
+
+                if(response.status === 'FAILED') {
+                    Swal.fire(
+                        'Good job!',
+                        response.message,
+                        'error'
+                    )
+                }
+
+                if(response.status === 'SUCCESS') {
+                    Swal.fire(
+                        'Good job!',
+                        response.message,
+                        'success'
+                    )
+                }
+                $inputs.prop("disabled", false);
+            });
+        })
+    </script>
 @endsection

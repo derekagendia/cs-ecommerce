@@ -11,7 +11,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <p class="fw-bold">{{ $shop->name }}</p>
-                                    <a href="shopdetails.html" class="btn btn-primary btn-sm">Details Shop</a>
+{{--                                    <a href="" class="btn btn-primary btn-sm">Details Shop</a>--}}
                                 </div>
                             </div>
 

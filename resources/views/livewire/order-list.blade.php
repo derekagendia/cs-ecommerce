@@ -45,7 +45,7 @@
                                         <td>{{ $order->user->name }}</td>
                                         <td>{{ $order->order_number }}</td>
                                         <td>{{ $order->created_at->format('d/m/Y') }}</td>
-                                        <td> {{ $order->payment_gateway == 1 ? 'MTN MONEY' : 'ORANGE MONEY' }}</td>
+                                        <td> {{ $order->payment_method == 'MOMO' ? 'MTN MONEY' : 'ORANGE MONEY' }}</td>
                                         <td>XAF {{ number_format($order->grand_total) }}</td>
                                         <td><span
                                                 class="shape-xs rounded-circle bg-success mr-2"></span><span
