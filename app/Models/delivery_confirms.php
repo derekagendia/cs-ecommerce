@@ -15,6 +15,7 @@ class delivery_confirms extends Model
         'token',
         'order_number',
         'shop_name',
-        'phone_to_withdrawal'
+        'phone_to_withdrawal',
+        'total_amount_to_withdrawal'
     ];
 }

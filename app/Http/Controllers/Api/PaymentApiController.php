@@ -48,6 +48,8 @@ class PaymentApiController extends Controller
     public static function checkStatus($order_id)
     {
 
+        Define('SECRETE',"M0NFRDlCQTdFNzY3NTk1MjI0MTcwMUM5N0YwMTVENkRFQUM0RkExOTdDNjczMkRBNUJGMkJFNDZDNTM2Rjc0QjpGNDFBNjFBMTJCOTU1NzE1QzJFNDhFN0JBRTkxQTlDMjhERThDRkZEN0UzRTg4MUIwRUJBNUFGMDM0NUYwQTAw");
+
         $data = [
             "partner_id" => "PAW1759",
 
@@ -70,7 +72,7 @@ class PaymentApiController extends Controller
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS => json_encode($data),
             CURLOPT_HTTPHEADER => [
-                "Authorization: Basic M0NFRDlCQTdFNzY3NTk1MjI0MTcwMUM5N0YwMTVENkRFQUM0RkExOTdDNjczMkRBNUJGMkJFNDZDNTM2Rjc0QjpGNDFBNjFBMTJCOTU1NzE1QzJFNDhFN0JBRTkxQTlDMjhERThDRkZEN0UzRTg4MUIwRUJBNUFGMDM0NUYwQTAw",
+                "Authorization: Basic ".SECRETE,
                 "Content-Type: application/json"
             ],
         ]);

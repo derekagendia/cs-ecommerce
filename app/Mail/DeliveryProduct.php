@@ -19,7 +19,8 @@ class DeliveryProduct extends Mailable
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param User $user
+     * @param string $token
      */
     public function __construct(User $user,string $token)
     {

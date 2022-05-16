@@ -52,6 +52,9 @@ class OrderTable extends Component
         );
 
         Mail::to($client)->send(new DeliveryProduct($client,$token));
+        session()->flash('message', 'Confirmation successfully Send.');
+
+        return redirect()->route('orders.show');
 
     }
 

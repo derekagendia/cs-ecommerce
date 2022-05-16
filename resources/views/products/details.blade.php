@@ -289,7 +289,7 @@
                     })
                 }
 
-                if(response.status === 'SUCCESS') {
+                if(response.status === 'SUCCESSFUL') {
 
                     Swal.fire(
                         'Good job!',
@@ -390,10 +390,10 @@
                     )
                 }
 
-                if (response.status === 'SUCCESS') {
+                if (response.status === 'SUCCESSFUL') {
                     Swal.fire(
                         'Good job!',
-                        response.message,
+                        'Transaction Complete',
                         'success'
                     )
                 }

@@ -31,6 +31,6 @@ class Order extends Model
 
     public static function getOwnOrderShop($shop_id)
     {
-        return static::where('shop_id', $shop_id)->get();
+        return static::where('shop_id', $shop_id)->where('status','pending')->get();
     }
 }
