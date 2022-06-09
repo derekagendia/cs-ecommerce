@@ -2,24 +2,32 @@
 <div>
     <div class="row">
         @forelse($products as $product)
-            <div class="col-lg-3 col-md-6 col-xs-6 mb-4">
-                <a href="#">
-                    <div class="card shadow">
-                        <img src=" {{ asset('assets/img/cover.jpg') }}" class="card-img-top">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 mb-3">
-                                    <p class="font-weight-bolder">{{ $product->name }} <span
-                                            class="badge badge-danger font-weight-bolder p-1">New</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <h5 class="font-weight-bolder">{{ number_format($product->price) }} CFA</h5>
-                            <a href="{{ route('product.details',[$product->shop->slug,$product->id]) }}"
-                               class="btn btn-paypal">details</a>
-                        </div>
+            <div class="col-lg-3 col-sm-6 col-xs-3">
+
+                <div class="card mb-2">
+                    <a href="{{ route('products.details',$product->slug) }}">
+                        <img src="{{ asset(Voyager::image($product->cover_img)) }}" class="card-img-top">
+                    </a>
+                    <div class="card-body">
+                        <h4>{{ number_format($product->price) }} FCFA <span
+                                class="badge {{ $product->is_negociable ? 'bg-primary' : 'bg-danger' }} badge-pill fw-light"
+                                style="font-size:10pt;">{{ $product->is_negociable ? 'negociable' : 'not negociable' }}</span>
+                        </h4>
+                        <p>{{ $product->name }}</p>
+                        <ul class="list-unstyled pt-1">
+                            <li class="list-inline-item">
+                                <a href="#" style="text-decoration: none;">
+                                    <div class="user"
+                                         style="background-image:url({{asset('assets/img/dg2.jpg')}}); size:cover;">
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="list-inline-item" style="position: absolute;">
+                                {{ $product->shop->name }}
+                            </li>
+                        </ul>
                     </div>
-                </a>
+                </div>
             </div>
         @empty
         @endforelse

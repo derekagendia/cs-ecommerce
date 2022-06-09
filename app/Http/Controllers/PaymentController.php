@@ -60,7 +60,7 @@ class PaymentController extends Controller
                 "destinataire" => $request->phone,
             ],
             "amount" => $request->amount ? $request->amount : $request->price_negociable,
-            "callback" => "https://webhook.site/938f1740-6a36-427e-a6bb-8e3f849b46a9",
+            "callback" => route('callback'),
             "recipientNumber" => $request->phone,
             "serviceCode" => $request->operator,
         ];
@@ -75,7 +75,7 @@ class PaymentController extends Controller
         if ($request->price_negociable < $product->price_negociable) {
             return response()->json([
                 'status' => 302,
-                'message' => 'Sorry you price is not corresponde our negociate price !! please propose another amount'
+                'message' => 'Sorry your price is not within the corresponding range of our negotiate price !! please kindly propose another amount'
             ], 200);
         }
 
@@ -85,10 +85,5 @@ class PaymentController extends Controller
     public function checkStatus(Request $request)
     {
         return PaymentApiController::checkStatus($request->order_id);
-    }
-
-    public function callback()
-    {
-        return response()->json(request());
     }
 }

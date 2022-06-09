@@ -16,7 +16,7 @@ class SearchProductList extends Component
     public function render()
     {
         return view('livewire.search-product-list',[
-            'products' => \App\Models\Product::where('name','like',"%{$this->search}%")->paginate(5)
+            'products' => \App\Models\Product::where('name','like',"%{$this->search}%")->paginate(8)
         ]);
     }
 
@@ -37,5 +37,10 @@ class SearchProductList extends Component
     public function paginationView()
     {
         return 'livewire.pagination';
+    }
+
+    public function search()
+    {
+        $this->search = 'iphone';
     }
 }

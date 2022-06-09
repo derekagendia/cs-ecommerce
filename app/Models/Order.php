@@ -9,8 +9,8 @@ class Order extends Model
 {
     use HasFactory;
 
-    CONST IS_PAID = true;
-    CONST IS_NOT_PAID = false;
+    const IS_PAID = true;
+    const IS_NOT_PAID = false;
 
     protected $guarded = [];
 
@@ -31,6 +31,22 @@ class Order extends Model
 
     public static function getOwnOrderShop($shop_id)
     {
-        return static::where('shop_id', $shop_id)->where('status','pending')->get();
+        return static::where('shop_id', $shop_id)->where('status', 'pending')->get();
+    }
+
+    public static function cancel($code)
+    {
+        $trans = static::whereOrder_number($code)->first();
+        $trans->status = "decline";
+        $trans->is_paid = 0;
+        $trans->save();
+    }
+
+    public static function complete($code)
+    {
+        $trans = static::whereOrder_number($code)->first();
+        $trans->status = "completed";
+        $trans->is_paid = 1;
+        $trans->save();
     }
 }

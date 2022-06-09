@@ -17,8 +17,6 @@
                                 {{ $product->shop->name}}
                             </li>
                         </ul>
-
-
                     </div>
                 </div>
             </div>

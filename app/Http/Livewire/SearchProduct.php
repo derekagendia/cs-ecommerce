@@ -19,6 +19,12 @@ class SearchProduct extends Component
 
     public function updateProductSearch()
     {
-        $this->emit('searchProductUpdated',$this->searchProduct);
+        $this->emit('searchProductUpdated', $this->searchProduct);
+        return redirect()->to('products-list');
+    }
+
+    public function search()
+    {
+
     }
 }

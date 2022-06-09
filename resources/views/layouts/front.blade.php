@@ -15,7 +15,7 @@
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <livewire:styles/>
     <wireui:scripts/>
     <script src="//unpkg.com/alpinejs" defer></script>
@@ -32,7 +32,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-        <a href="#" class="navbar-brand">
+        <a href="{{ route('home') }}" class="navbar-brand">
             E-commerce
         </a>
         <button class="navbar-toggler bg-white border-light" type="button" data-bs-toggle="collapse"
@@ -41,20 +41,27 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navigation">
-            <ul class="navbar-nav navbar-nav-hover ms-auto  w-75">
-                <div class="input-group">
-                    <input class="form-control" type="text" name="" placeholder="search products"
-                           aria-label="Recipient's ">
-                    <div class="input-group-append">
-                        <a href="#" class="btn btn-secondary">search</a>
+            <form method="post" action="{{ route('search.products') }}">
+                @csrf
+                <ul class="navbar-nav navbar-nav-hover ms-auto">
+                    <div class="input-group">
+                        <input
+                            class="form-control"
+                            type="text" name="name" placeholder="search products"
+                            aria-label="Recipient's " style="padding-right: 277px;"/>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-secondary">search</button>
+                        </div>
                     </div>
-                </div>
-            </ul>
+                </ul>
+            </form>
+
             <ul class="navbar-nav navbar-nav-hover ms-auto">
                 @if(Route::has('login'))
                     @auth
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId"
+                               data-bs-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">user account</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownId">
 
@@ -66,7 +73,8 @@
                                     @if(isset(auth()->user()->shop->is_active) && !auth()->user()->shop->is_active && (auth()->user()->shop->user_id == auth()->user()->id))
                                         <a class="dropdown-item" href="#">Store under verification</a>
                                     @else
-                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="dropdown-item"
+                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                           class="dropdown-item"
                                            href="#">Create Store</a>
                                     @endif
 
@@ -90,9 +98,6 @@
                 @endif
             </ul>
         </div>
-
-
-        </button>
     </div>
 </nav>
 
@@ -105,11 +110,11 @@
 <footer class="mt-3 pb-2 pt-3 bg-dark text-white">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <h4 class="fw-bold">CS E-com</h4>
                 <p class="text-sm">Lorem ipsum dolore annuit is not a random text contrary to popular opinion</p>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <h6 class="fw-bold">useful links</h6>
                 <ul class="list-unstyled">
                     <li><a href="#" class="footer-link">About</a></li>
@@ -118,7 +123,7 @@
                     <li><a href="#" class="footer-link">Sitemap</a></li>
                 </ul>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <h6 class="fw-bold">useful links</h6>
                 <ul class="list-unstyled">
                     <li><a href="#" class="footer-link">About</a></li>
@@ -126,16 +131,6 @@
                     <li><a href="#" class="footer-link">Terms of service</a></li>
                     <li><a href="#" class="footer-link">Sitemap</a></li>
                 </ul>
-            </div>
-            <div class="col-lg-3">
-                <div class="input-group">
-                    <input class="form-control" type="text" name="" placeholder="search products"
-                           aria-label="Recipient's ">
-                    <div class="input-group-append">
-                        <a href="#" class="btn btn-secondary">search</a>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
@@ -163,7 +158,16 @@
 @yield('js')
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function myFunction() {
+        var x = document.getElementById("mySidebar");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
 
 @wireUiScripts
 <script src="//unpkg.com/alpinejs" defer></script>

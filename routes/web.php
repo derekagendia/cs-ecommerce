@@ -20,10 +20,13 @@ Route::get('/home', function () {
     return view('index');
 })->name('home');
 
+Route::get('/callback',[\App\Http\Controllers\PaymentCallBackController::class,'callback'])->name('callback');
+Route::post('/search-products',[\App\Http\Controllers\SearchController::class,'searchProduct'])->name('search.products');
+Route::post('/search-filters',[\App\Http\Controllers\SearchController::class,'filterSearch'])->name('search.filters');
+
 Route::middleware(['auth:sanctum', 'verified'])->group( function () {
 
     Route::post('/pay',[\App\Http\Controllers\PaymentController::class,'sendPayment'])->name('pay');
-    Route::get('/callback',[\App\Http\Controllers\PaymentController::class,'callback'])->name('callback');
     Route::post('/check',[\App\Http\Controllers\PaymentController::class,'isGoodPrice'])->name('check-price');
     Route::post('/check-status',[\App\Http\Controllers\PaymentController::class,'checkStatus'])->name('check-status');
 
@@ -43,6 +46,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group( function () {
 Route::get('/account-created', [\App\Http\Controllers\HomeController::class, 'pub'])->name('account-created');
 Route::get('/product-details/{slug}',[\App\Http\Controllers\ProductController::class, 'details'])->name('products.details');
 Route::get('/products-receive/{token}',[\App\Http\Controllers\ReceiveController::class,'receive'])->name('products.received');
+Route::get('/products-list',[\App\Http\Controllers\ReceiveController::class,'product'])->name('products.list');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
