@@ -89,8 +89,8 @@
                     </ul>
 
                     <ul class="list-unstyled">
-                        <li>Brand: <span class="fw-bold">Apple</span></li>
-                        <li>state: <span class="fw-bold">Used</span></li>
+                        <li>Brand: <span class="fw-bold">{{ $details->brand }}</span></li>
+                        <li>state: <span class="fw-bold">{{ $details->state }}</span></li>
                     </ul>
                     <p>
                         @if($details->is_negociable)

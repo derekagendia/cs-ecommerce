@@ -85,6 +85,19 @@
                                         <input wire:model.defer="name" type="text"
                                                class="form-control" id="recipient-name1">
                                     </div>
+
+                                    <div class="form-group @error('brand') has-error @enderror">
+                                        <label for="recipient-name" class="control-label">Product brand:</label>
+                                        <input wire:model.defer="brand" type="text"
+                                               class="form-control" id="recipient-name1">
+                                    </div>
+
+                                    <div class="form-group @error('state') has-error @enderror">
+                                        <label for="recipient-name" class="control-label">Product State:</label>
+                                        <input wire:model.defer="state" type="text"
+                                               class="form-control" id="recipient-name1">
+                                    </div>
+
                                     <div class="form-group @error('description') has-error @enderror">
                                         <label for="message-text" class="control-label">Description:</label>
                                         <textarea wire:model.defer="description" class="form-control"
@@ -123,6 +136,16 @@
                                             <h3 class="box-title">Image Cover</h3>
                                             <input wire:model.defer="cover_img" type="file" required/>
                                         </div>
+
+                                        <div class="white-box @error('image_2') has-error @enderror">
+                                            <h3 class="box-title">Image Cover</h3>
+                                            <input wire:model.defer="image_2" type="file" required/>
+                                        </div>
+
+                                        <div class="white-box @error('image_3') has-error @enderror">
+                                            <h3 class="box-title">Image Cover</h3>
+                                            <input wire:model.defer="cover_img" type="file" required/>
+                                        </div>
                                     </div>
                             </div>
                             <div class="modal-footer">
@@ -150,6 +173,18 @@
                                         <input wire:model.defer="name" type="text"
                                                class="form-control" id="recipient-name1">
                                     </div>
+                                    <div class="form-group @error('brand') has-error @enderror">
+                                        <label for="recipient-name" class="control-label">Product brand:</label>
+                                        <input wire:model.defer="brand" type="text"
+                                               class="form-control" id="recipient-name1">
+                                    </div>
+
+                                    <div class="form-group @error('state') has-error @enderror">
+                                        <label for="recipient-name" class="control-label">Product State:</label>
+                                        <input wire:model.defer="state" type="text"
+                                               class="form-control" id="recipient-name1">
+                                    </div>
+
                                     <div class="form-group @error('description') has-error @enderror">
                                         <label for="message-text" class="control-label">Description:</label>
                                         <textarea wire:model.defer="description" class="form-control"
@@ -188,6 +223,16 @@
                                         <div class="white-box">
                                             <h3 class="box-title">Image Cover</h3>
                                             <input wire:model.defer="cover_img" type="file" required/>
+                                        </div>
+
+                                        <div class="white-box">
+                                            <h3 class="box-title">Image Cover 2</h3>
+                                            <input wire:model.defer="image_2" type="file" required/>
+                                        </div>
+
+                                        <div class="white-box">
+                                            <h3 class="box-title">Image Cover 3</h3>
+                                            <input wire:model.defer="image_3" type="file" required/>
                                         </div>
                                     </div>
                             </div>

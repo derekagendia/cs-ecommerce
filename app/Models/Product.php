@@ -18,7 +18,11 @@ class Product extends Model
         'shop_id',
         'is_negociable',
         'slug',
-        'categories_id'
+        'categories_id',
+        'state',
+        'brand',
+        'image_2',
+        'image_3'
     ];
 
     public function shop()

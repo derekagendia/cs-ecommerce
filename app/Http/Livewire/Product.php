@@ -18,6 +18,8 @@ class Product extends Component
     public $description;
     public $price;
     public $cover_img;
+    public $image_2;
+    public $image_3;
     public $price_negociable = 0;
     public $product_id;
     public $categories_id = null;
@@ -30,7 +32,11 @@ class Product extends Component
             'is_negociable' => 'required',
             'price' => 'required',
             'price_negociable' => 'nullable',
-            'cover_img' => 'required|image|max:2024'
+            'cover_img' => 'required|image|max:2024',
+            'image_2' => 'required|image|max:2024',
+            'image_3' => 'required|image|max:2024',
+            'brand' => 'required',
+            'state' => 'required',
         ];
     }
 
@@ -41,7 +47,11 @@ class Product extends Component
         $data['slug'] = Str::slug($this->name);
         $data['categories_id'] = $this->categories_id;
         $image = $this->cover_img->storeAs('shop-product-images/' . auth()->user()->shop->name, date('Ymd') . $this->cover_img->getClientOriginalName(), 'public');
+        $image_2 = $this->image_2->storeAs('shop-product-images/' . auth()->user()->shop->name, date('Ymd') . $this->image_2->getClientOriginalName(), 'public');
+        $image_3 = $this->image_3->storeAs('shop-product-images/' . auth()->user()->shop->name, date('Ymd') . $this->image_3->getClientOriginalName(), 'public');
         $data['cover_img'] = $image;
+        $data['image_2'] = $image_2;
+        $data['image_3'] = $image_3;
 
         try {
 
@@ -79,6 +89,8 @@ class Product extends Component
             $this->price = $product->price;
             $this->price_negociable = $product->price_negociable;
             $this->cover_img = $product->cover_img;
+            $this->image_2 = $product->image_2;
+            $this->image_3 = $product->image_3;
             $this->categories_id = $product->categories_id;
         }
     }
@@ -88,7 +100,11 @@ class Product extends Component
         $data = $this->validate();
 
         $image = $this->cover_img->storeAs('shop-product-images/' . auth()->user()->shop->name, date('Ymd') . $this->cover_img->getClientOriginalName(), 'public');
+        $image_2 = $this->image_2->storeAs('shop-product-images/' . auth()->user()->shop->name, date('Ymd') . $this->image_2->getClientOriginalName(), 'public');
+        $image_3 = $this->image_3->storeAs('shop-product-images/' . auth()->user()->shop->name, date('Ymd') . $this->image_3->getClientOriginalName(), 'public');
         $data['cover_img'] = '/storage/' . $image;
+        $data['image_2'] = '/storage/' . $image_2;
+        $data['image_3'] = '/storage/' . $image_3;
 
         try {
 
@@ -96,7 +112,9 @@ class Product extends Component
 
             $produit->name = $data['name'];
             $produit->slug = Str::slug($data['name']);
-            $produit->cover_img = $data['cover_img'];
+            $produit->cover_img = is_null($data['cover_img']) ? $produit->cover_img : $data['cover_img'] ;
+            $produit->image_2 = is_null($data['image_2']) ? $produit->image_2 : $data['image_2'];
+            $produit->image_3 = is_null($data['image_3']) ? $produit->image_3 : $data['image_3'];
             $produit->description = $data['description'];
             $produit->is_negociable = $data['is_negociable'];
             $produit->price = $data['price'];
