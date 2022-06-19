@@ -61,20 +61,25 @@
                         </ol>
                         <div class="carousel-inner" role="listbox">
                             <div class="carousel-item active">
-                                <img src="{{ asset(Voyager::image($details->cover_img)) }}" class="img-fluid" alt="First slide">
+                                <img src="{{ asset(Voyager::image($details->cover_img)) }}" class="img-fluid"
+                                     alt="First slide">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{ asset(Voyager::image($details->image_2)) }}" class="img-fluid" alt="Second slide">
+                                <img src="{{ asset(Voyager::image($details->image_2)) }}" class="img-fluid"
+                                     alt="Second slide">
                             </div>
                             <div class="carousel-item">
-                                <img src="{{ asset(Voyager::image($details->image_3)) }}" class="img-fluid" alt="Third slide">
+                                <img src="{{ asset(Voyager::image($details->image_3)) }}" class="img-fluid"
+                                     alt="Third slide">
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselId"
+                                data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselId"
+                                data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
@@ -272,21 +277,21 @@
             let request;
 
             request = $.ajax({
-                    url: "{{ route('check-status') }}",
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: "post",
-                    data: { 'order_id': id }
-                });
+                url: "{{ route('check-status') }}",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "post",
+                data: {'order_id': id}
+            });
 
             request.done(function (response) {
 
-                if(response.status === 'PENDING') {
+                if (response.status === 'PENDING') {
                     checkPayment(id);
                 }
 
-                if(response.status === 'FAILED') {
+                if (response.status === 'FAILED') {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -294,7 +299,7 @@
                     })
                 }
 
-                if(response.status === 'NOTFOUND') {
+                if (response.status === 'NOTFOUND') {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -302,7 +307,7 @@
                     })
                 }
 
-                if(response.status === 'SUCCESSFUL') {
+                if (response.status === 'SUCCESSFUL') {
 
                     Swal.fire(
                         'Good job!',
