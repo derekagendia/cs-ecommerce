@@ -61,10 +61,23 @@
                         </ol>
                         <div class="carousel-inner" role="listbox">
                             <div class="carousel-item active">
-                                <img src="{{ asset(Voyager::image($details->cover_img)) }}" class="img-fluid"
-                                     alt="First slide">
+                                <img src="{{ asset(Voyager::image($details->cover_img)) }}" class="img-fluid" alt="First slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ asset(Voyager::image($details->image_2)) }}" class="img-fluid" alt="Second slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ asset(Voyager::image($details->image_3)) }}" class="img-fluid" alt="Third slide">
                             </div>
                         </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
                 </div>
                 <div class="col-md-5">

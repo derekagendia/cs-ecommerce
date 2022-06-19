@@ -50,7 +50,8 @@
                                         <td>{{ $product->is_negociable ? number_format($product->price_negociable). ' FCFA' : 'NOT NEGOCIABLE' }}</td>
                                         <td class="badge rounded-pill {{ $product->is_negociable ? 'bg-success' : 'bg-danger' }}">{{ $product->is_negociable ? 'yes' : 'no' }}</td>
                                         <td>{{ $product->description }}</td>
-                                        <td><img src="{{ asset(Voyager::image($product->cover_img)) }}" class="img img-circle" alt="img"
+                                        <td><img src="{{ asset(Voyager::image($product->cover_img)) }}"
+                                                 class="img img-circle" alt="img"
                                                  style="height: 50px;"/></td>
                                         <td class="text-nowrap">
                                             <button wire:click="productEdit({{$product->id}})"
@@ -144,7 +145,7 @@
 
                                         <div class="white-box @error('image_3') has-error @enderror">
                                             <h3 class="box-title">Image Cover</h3>
-                                            <input wire:model.defer="cover_img" type="file" required/>
+                                            <input wire:model.defer="image_3" type="file" required/>
                                         </div>
                                     </div>
                             </div>
@@ -235,20 +236,17 @@
                                             <input wire:model.defer="image_3" type="file" required/>
                                         </div>
                                     </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">Update Product</button>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Update Product</button>
-                            </div>
-                            </form>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </div>

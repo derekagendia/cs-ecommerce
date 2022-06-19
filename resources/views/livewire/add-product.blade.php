@@ -43,27 +43,6 @@
                 @enderror
             </div>
 
-{{--            <div class="control-group col-md-2">--}}
-
-{{--                <select wire:model="category_id" id="category_id" class="form-control" aria-label="Default select example">--}}
-{{--                    @foreach($categories as $category)--}}
-{{--                        <option value="{{ $category->id }}" >{{ $category->name }}</option>--}}
-{{--                    @endforeach--}}
-{{--                </select>--}}
-{{--            </div>--}}
-
-{{--            <div class="control-group col-md-2">--}}
-
-{{--                <input wire:model.defer="quantity" placeholder="Quantity"--}}
-{{--                       class="form-control @error('quantity') is-invalid @enderror" type="text"--}}
-{{--                       aria-describedby="validation-quantity-feedback">--}}
-{{--                @error('quantity')--}}
-{{--                <div id="validation-quantity-feedback" class="invalid-feedback">--}}
-{{--                    {{ $message }}--}}
-{{--                </div>--}}
-
-{{--                @enderror--}}
-{{--            </div>--}}
 
             <div class="form-control-md col-md-2">
 

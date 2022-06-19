@@ -18,6 +18,8 @@ class Product extends Component
     public $description;
     public $price;
     public $cover_img;
+    public $state;
+    public $brand;
     public $image_2;
     public $image_3;
     public $price_negociable = 0;
@@ -87,6 +89,8 @@ class Product extends Component
             $this->description = $product->description;
             $this->is_negociation = $product->is_negociation;
             $this->price = $product->price;
+            $this->brand = $product->brand;
+            $this->state = $product->state;
             $this->price_negociable = $product->price_negociable;
             $this->cover_img = $product->cover_img;
             $this->image_2 = $product->image_2;
@@ -99,12 +103,13 @@ class Product extends Component
     {
         $data = $this->validate();
 
-        $image = $this->cover_img->storeAs('shop-product-images/' . auth()->user()->shop->name, date('Ymd') . $this->cover_img->getClientOriginalName(), 'public');
+        $images = $this->cover_img->storeAs('shop-product-images/' . auth()->user()->shop->name, date('Ymd') . $this->cover_img->getClientOriginalName(), 'public');
         $image_2 = $this->image_2->storeAs('shop-product-images/' . auth()->user()->shop->name, date('Ymd') . $this->image_2->getClientOriginalName(), 'public');
         $image_3 = $this->image_3->storeAs('shop-product-images/' . auth()->user()->shop->name, date('Ymd') . $this->image_3->getClientOriginalName(), 'public');
-        $data['cover_img'] = '/storage/' . $image;
-        $data['image_2'] = '/storage/' . $image_2;
-        $data['image_3'] = '/storage/' . $image_3;
+
+        $data['cover_img'] = $images;
+        $data['image_2'] = $image_2;
+        $data['image_3'] = $image_3;
 
         try {
 

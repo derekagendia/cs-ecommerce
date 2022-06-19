@@ -13,7 +13,7 @@ class AddBrandAndStateToProductsTable extends Migration
      */
     public function up()
     {
-        Schema::table('Product', function (Blueprint $table) {
+        Schema::table('Products', function (Blueprint $table) {
             $table->string('brand')->nullable();
             $table->string('state')->nullable();
 
@@ -29,7 +29,7 @@ class AddBrandAndStateToProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('Product', function (Blueprint $table) {
+        Schema::table('Products', function (Blueprint $table) {
             //
         });
     }
