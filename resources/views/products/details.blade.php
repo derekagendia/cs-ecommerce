@@ -228,6 +228,8 @@
                         'Please check your phone and complete the transaction ',
                         'info'
                     )
+
+                    checkPayment(response.idFromClient);
                 }
 
             });
@@ -295,7 +297,7 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Something is wrong',
+                        text: 'Transaction failed or Aborted',
                     })
                 }
 

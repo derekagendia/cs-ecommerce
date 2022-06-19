@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Shop;
 use Livewire\Component;
 use \App\Models\Product as Produit;
 use Livewire\WithFileUploads;

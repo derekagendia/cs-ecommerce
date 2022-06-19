@@ -84,6 +84,18 @@ class PaymentController extends Controller
 
     public function checkStatus(Request $request)
     {
-        return PaymentApiController::checkStatus($request->order_id);
+        $status = PaymentApiController::checkStatus($request->order_id);
+
+        if($status['status'] == 'SUCCESSFUL'){
+            Order::complete($request->order_id);
+            return $status;
+        }
+
+        if($status['status'] == 'FAILED'){
+            Order::cancel($request->order_id);
+            return $status;
+        }
+
+        return $status;
     }
 }
