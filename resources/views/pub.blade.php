@@ -20,12 +20,12 @@
             <!-- Ad Here -->
 
         </div>
-{{--        <div class="col-rt-2">--}}
-{{--            <ul>--}}
-{{--                <li><a href="{{ route('home') }}" title="Back to tutorial page">Back--}}
-{{--                        to Tutorial</a></li>--}}
-{{--            </ul>--}}
-{{--        </div>--}}
+        <div class="col-rt-2">
+            <ul>
+                <li><a href="{{ route('home') }}" title="Back to tutorial page">Back
+                        to Tutorial</a></li>
+            </ul>
+        </div>
     </div>
 </div>
 
