@@ -15,6 +15,7 @@ class Product extends Component
     public $is_negociable = true;
     public $name;
     public $description;
+    public $info;
     public $price;
     public $cover_img;
     public $state;
@@ -38,6 +39,7 @@ class Product extends Component
             'image_3' => 'required|image|max:2024',
             'brand' => 'required',
             'state' => 'required',
+            'info' => 'required',
         ];
     }
 
@@ -90,6 +92,7 @@ class Product extends Component
             $this->price = $product->price;
             $this->brand = $product->brand;
             $this->state = $product->state;
+            $this->info = $product->info;
             $this->price_negociable = $product->price_negociable;
             $this->cover_img = $product->cover_img;
             $this->image_2 = $product->image_2;
@@ -120,6 +123,9 @@ class Product extends Component
             $produit->image_2 = is_null($data['image_2']) ? $produit->image_2 : $data['image_2'];
             $produit->image_3 = is_null($data['image_3']) ? $produit->image_3 : $data['image_3'];
             $produit->description = $data['description'];
+            $produit->brand = $data['brand'];
+            $produit->state = $data['state'];
+            $produit->info = $data['info'];
             $produit->is_negociable = $data['is_negociable'];
             $produit->price = $data['price'];
             $produit->price_negociable = $data['price_negociable'];

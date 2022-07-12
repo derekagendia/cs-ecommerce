@@ -23,6 +23,8 @@ Route::get('/home', function () {
 Route::get('/callback',[\App\Http\Controllers\PaymentCallBackController::class,'callback'])->name('callback');
 Route::post('/search-products',[\App\Http\Controllers\SearchController::class,'searchProduct'])->name('search.products');
 Route::post('/search-filters',[\App\Http\Controllers\SearchController::class,'filterSearch'])->name('search.filters');
+Route::get('/search-categories/{id}',[\App\Http\Controllers\SearchController::class,'searchByCategory'])->name('search.categories');
+Route::get('/search-owner/{slug}',[\App\Http\Controllers\SearchController::class,'searchOwnerProduct'])->name('shop.owner');
 
 Route::middleware(['auth:sanctum', 'verified'])->group( function () {
 

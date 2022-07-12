@@ -30,153 +30,159 @@
 <body>
 <x-notifications></x-notifications>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-        <a href="{{ route('home') }}" class="navbar-brand">
-            E-commerce
-        </a>
-        <button class="navbar-toggler bg-white border-light" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navigation">
-            <form method="post" action="{{ route('search.products') }}">
-                @csrf
-                <ul class="navbar-nav navbar-nav-hover ms-auto">
-                    <div class="input-group">
-                        <input
-                            class="form-control"
-                            type="text" name="name" placeholder="search products"
-                            aria-label="Recipient's " style="padding-right: 277px;"/>
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-secondary">search</button>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="bg-cslisted py-3">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-cslisted">
+                    <div class="container">
+                        <a href="{{ route('home') }}" class="navbar-brand">
+                            CS-LISTED
+                        </a>
+                        <button class="navbar-toggler bg-white border-light" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navigation">
+                            <form method="post" action="{{ route('search.products') }}">
+                                @csrf
+                                <ul class="navbar-nav navbar-nav-hover ms-auto">
+                                    <div class="input-group">
+                                        <input
+                                            class="form-control"
+                                            type="text" name="name" placeholder="search products"
+                                            aria-label="Recipient's " style="padding-right: 680px;"/>
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-warning">search</button>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </form>
+
+                            <ul class="navbar-nav navbar-nav-hover ms-auto">
+                                @if(Route::has('login'))
+                                    @auth
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId"
+                                               data-bs-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false">user account</a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+
+                                                @if(isset(auth()->user()->shop) && auth()->user()->shop->is_active && (auth()->user()->shop->user_id == auth()->user()->id))
+                                                    @if(auth()->user()->hasRole('seller'))
+                                                        <a class="dropdown-item" href="{{ route('dashboard') }}">My
+                                                            store</a>
+                                                    @endif
+                                                @else
+                                                    @if(isset(auth()->user()->shop->is_active) && !auth()->user()->shop->is_active && (auth()->user()->shop->user_id == auth()->user()->id))
+                                                        <a class="dropdown-item" href="#">Store under verification</a>
+                                                    @else
+                                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                           class="dropdown-item"
+                                                           href="#">Create Store</a>
+                                                    @endif
+
+                                                @endif
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+
+                                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                                       onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                                        {{ __('Log Out') }}
+                                                    </a>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    @else
+                                        <a href="{{ route('login') }}" class="nav-link">Log in</a>
+                                        <a href="{{ route('register') }}" class="nav-link">Register</a>
+
+                                    @endauth
+                                @endif
+                            </ul>
                         </div>
                     </div>
-                </ul>
-            </form>
+                </nav>
 
-            <ul class="navbar-nav navbar-nav-hover ms-auto">
-                @if(Route::has('login'))
-                    @auth
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId"
-                               data-bs-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">user account</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                <!-- Modal -->
+                <livewire:save-shop/>
+                <!-- end of navbar -->
 
-                                @if(isset(auth()->user()->shop) && auth()->user()->shop->is_active && (auth()->user()->shop->user_id == auth()->user()->id))
-                                    @if(auth()->user()->hasRole('seller'))
-                                        <a class="dropdown-item" href="{{ route('dashboard') }}">My store</a>
-                                    @endif
-                                @else
-                                    @if(isset(auth()->user()->shop->is_active) && !auth()->user()->shop->is_active && (auth()->user()->shop->user_id == auth()->user()->id))
-                                        <a class="dropdown-item" href="#">Store under verification</a>
-                                    @else
-                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                           class="dropdown-item"
-                                           href="#">Create Store</a>
-                                    @endif
+                @yield('content')
 
-                                @endif
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                        {{ __('Log Out') }}
-                                    </a>
-                                </form>
+                <footer class="mt-3 pb-2 pt-3 bg-dark text-white">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <h4 class="fw-bold">CS E-com</h4>
+                                <p class="text-sm">Lorem ipsum dolore annuit is not a random text contrary to popular
+                                    opinion</p>
                             </div>
-                        </li>
-                    @else
-                        <a href="{{ route('login') }}" class="nav-link">Log in</a>
-                        <a href="{{ route('register') }}" class="nav-link">Register</a>
+                            <div class="col-lg-4">
+                                <h6 class="fw-bold">useful links</h6>
+                                <ul class="list-unstyled">
+                                    <li><a href="#" class="footer-link">About</a></li>
+                                    <li><a href="#" class="footer-link">Policies</a></li>
+                                    <li><a href="#" class="footer-link">Terms of service</a></li>
+                                    <li><a href="#" class="footer-link">Sitemap</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-4">
+                                <h6 class="fw-bold">useful links</h6>
+                                <ul class="list-unstyled">
+                                    <li><a href="#" class="footer-link">About</a></li>
+                                    <li><a href="#" class="footer-link">Policies</a></li>
+                                    <li><a href="#" class="footer-link">Terms of service</a></li>
+                                    <li><a href="#" class="footer-link">Sitemap</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
 
-                    @endauth
-                @endif
-            </ul>
-        </div>
-    </div>
-</nav>
+                <script>
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
 
-<!-- Modal -->
-<livewire:save-shop/>
-<!-- end of navbar -->
+                    // addEventListener version
+                    window.addEventListener('offline', (event) => {
+                        console.log("The network connection has been lost.");
 
-@yield('content')
+                        Swal.fire(
+                            'Oops Network Lost!',
+                            'The network connection has been lost',
+                            'error'
+                        )
+                    });
 
-<footer class="mt-3 pb-2 pt-3 bg-dark text-white">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <h4 class="fw-bold">CS E-com</h4>
-                <p class="text-sm">Lorem ipsum dolore annuit is not a random text contrary to popular opinion</p>
-            </div>
-            <div class="col-lg-4">
-                <h6 class="fw-bold">useful links</h6>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="footer-link">About</a></li>
-                    <li><a href="#" class="footer-link">Policies</a></li>
-                    <li><a href="#" class="footer-link">Terms of service</a></li>
-                    <li><a href="#" class="footer-link">Sitemap</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-4">
-                <h6 class="fw-bold">useful links</h6>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="footer-link">About</a></li>
-                    <li><a href="#" class="footer-link">Policies</a></li>
-                    <li><a href="#" class="footer-link">Terms of service</a></li>
-                    <li><a href="#" class="footer-link">Sitemap</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
+                </script>
+                @yield('js')
+                <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                    function myFunction() {
+                        var x = document.getElementById("mySidebar");
+                        if (x.style.display === "none") {
+                            x.style.display = "block";
+                        } else {
+                            x.style.display = "none";
+                        }
+                    }
+                </script>
 
-<script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+                @wireUiScripts
+                <script src="//unpkg.com/alpinejs" defer></script>
+                <livewire:scripts/>
 
-    // addEventListener version
-    window.addEventListener('offline', (event) => {
-        console.log("The network connection has been lost.");
-
-        Swal.fire(
-            'Oops Network Lost!',
-            'The network connection has been lost',
-            'error'
-        )
-    });
-
-</script>
-@yield('js')
-<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    function myFunction() {
-        var x = document.getElementById("mySidebar");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-</script>
-
-@wireUiScripts
-<script src="//unpkg.com/alpinejs" defer></script>
-<livewire:scripts/>
-
-<script>
-    window.addEventListener('closeModal', event => {
-        $(".modal").modal('hide');
-    })
-</script>
+                <script>
+                    window.addEventListener('closeModal', event => {
+                        $(".modal").modal('hide');
+                    })
+                </script>
 </body>
 </html>

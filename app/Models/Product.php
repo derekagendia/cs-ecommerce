@@ -21,6 +21,7 @@ class Product extends Model
         'categories_id',
         'state',
         'brand',
+        'info',
         'image_2',
         'image_3'
     ];

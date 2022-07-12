@@ -2,16 +2,39 @@
 
 @section('content')
 
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6">
-                <nav class="breadcrumb ">
-                    <a class="breadcrumb-item bread text-black" href="{{ route('home') }}">Home</a>
-                    <span class="breadcrumb-item active bread text-black">Search results</span>
-                </nav>
+    @if(!request()->routeIs('shop.owner'))
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <nav class="breadcrumb ">
+                            <a class="breadcrumb-item bread text-black" href="{{ route('home') }}">Home</a>
+                            <span class="breadcrumb-item active bread text-black">Search results</span>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
+
+    @if(request()->routeIs('shop.owner'))
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="d-flex pt-5">
+                            <img src="{{ asset('assets/img/profile.png') }}" class="img-profile shadow">
+                            <div>
+                                <ul class="list-unstyled ms-3 mt-3">
+                                    <li><span class="lead fw-bold text-warning">{{ $shop->name }}</span></li>
+                                    <li class="text-black">{{ $shop->owner->name }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
 
     <div class="row">
         <div class="col-lg-2">
@@ -32,18 +55,22 @@
                                 @csrf
                                 <div class="mb-1">
                                     <label class="form-label">Price range</label>
-                                    <input value="{{ old('price1') }}" required name="price1" type="number" class="form-control"  id="" aria-describedby="helpId"
+                                    <input value="{{ old('price1') }}" required name="price1" type="number"
+                                           class="form-control" id="" aria-describedby="helpId"
                                            placeholder="From">
                                 </div>
                                 <div class="mb-3">
-                                    <input value="{{ old('price2') }}" required name="price2" type="number" class="form-control" id="" aria-describedby="helpId"
+                                    <input value="{{ old('price2') }}" required name="price2" type="number"
+                                           class="form-control" id="" aria-describedby="helpId"
                                            placeholder="to">
                                 </div>
-{{--                                <div class="mb-3">--}}
-{{--                                    <small id="helpId" class="form-text text-muted"><label for="">Date added</label></small>--}}
-{{--                                    <input required type="date" class="form-control" name="date" id="" aria-describedby="helpId"--}}
-{{--                                                                 placeholder="">--}}
-{{--                                </div>--}}
+                                <div class="mb-3">
+                                    <small id="helpId" class="form-text text-muted"><label for="">Date
+                                            added</label></small>
+                                    <input required type="date" class="form-control" name="date" id=""
+                                           aria-describedby="helpId"
+                                           placeholder="">
+                                </div>
                                 <div class="form-check">
                                     <input value="1" class="form-check-input" type="radio" name="is_negociable"
                                            id="flexRadioDefault1">
@@ -74,7 +101,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <h6 class="fw-bold text-uppercase">Search results {{ isset($product_name)? 'for '. $product_name : '' }}</h6>
+                            <h6 class="fw-bold text-uppercase">{{ request()->routeIs('shop.owner')? 'Products available' : 'Search results' }} {{ isset($product_name)? 'for '. $product_name : '' }}</h6>
                             <button class="btn btn-primary btn-sm float-end" onclick="myFunction()">Filter</button>
 
                         </div>
@@ -93,7 +120,8 @@
 
                                 <div class="card mb-2">
                                     <a href="{{ route('products.details',$product->slug) }}">
-                                        <img src="{{ asset(Voyager::image($product->cover_img)) }}" class="card-img-top">
+                                        <img src="{{ asset(Voyager::image($product->cover_img)) }}"
+                                             class="card-img-top">
                                     </a>
                                     <div class="card-body">
                                         <h4>{{ number_format($product->price) }} FCFA <span

@@ -2,7 +2,7 @@
     {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
     @forelse($category as $categories)
         <li class="nav-item">
-            <span class="nav-link"> {{ $categories->name }}</span>
+            <a href="{{ route('search.categories',$categories->id) }}" class="nav-link"> {{ $categories->name }}</a>
         </li>
 
     @empty

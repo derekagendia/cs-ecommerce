@@ -1,6 +1,6 @@
 @extends('layouts.front')
 @section('content')
-
+</div>
     <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -160,6 +160,30 @@
             </div>
         </div>
     </section>
+
+<section class="mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h6 class="fw-bold text-uppercase">Detailed Info</h6>
+                <hr>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="mt-3">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-sm-6 col-xs-3">
+
+                {{ $details->info }}
+            </div>
+
+        </div>
+    </div>
+</section>
 
 
 @endsection

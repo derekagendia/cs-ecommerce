@@ -57,3 +57,21 @@ text-decoration: none;
 font-size:12pt;
 
 }
+
+.bg-cslisted {
+background-color:#5c0352;
+}
+
+.img-profile {
+  display: inline-block;
+  height:100px;
+  width: 100px;
+  border-radius: 1.2rem;
+  
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #5c0352;
+  border-color: #5c0352;
+}

@@ -104,6 +104,12 @@
                                         <textarea wire:model.defer="description" class="form-control"
                                                   id="message-text1"></textarea>
                                     </div>
+
+                                    <div class="form-group @error('info') has-error @enderror">
+                                        <label for="message-text" class="control-label">Detailed Info:</label>
+                                        <textarea wire:model.defer="info" class="form-control"
+                                                  id="message-text1"></textarea>
+                                    </div>
                                     <div class="form-group">
                                         <label class="control-label">Category</label>
                                         <select wire:model.defer="categories_id" class="form-control"
@@ -189,6 +195,12 @@
                                     <div class="form-group @error('description') has-error @enderror">
                                         <label for="message-text" class="control-label">Description:</label>
                                         <textarea wire:model.defer="description" class="form-control"
+                                                  id="message-text1"></textarea>
+                                    </div>
+
+                                    <div class="form-group @error('info') has-error @enderror">
+                                        <label for="message-text" class="control-label">Detailed Info:</label>
+                                        <textarea wire:model.defer="info" class="form-control"
                                                   id="message-text1"></textarea>
                                     </div>
                                     <div class="form-group">

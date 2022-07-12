@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('content')
-
+</div>
     <section class="mt-2">
         <div class="container">
             <div class="row">
