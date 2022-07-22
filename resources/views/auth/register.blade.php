@@ -28,12 +28,14 @@
 
             <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password"></x-jet-input>
+                <i class="far fa-eye" id="togglePassword" style="margin-left: 369px;cursor: pointer;position: absolute;margin-top: -28px;"></i>
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                <x-jet-input id="password_confirmation" class="block mt-1 w-full far fa-eye" type="password" name="password_confirmation" required autocomplete="new-password" />
+                <i class="far fa-eye" id="togglePasswordConfirmation" style="margin-left: 369px;cursor: pointer;position: absolute;margin-top: -28px;"></i>
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
@@ -65,3 +67,5 @@
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+
+@

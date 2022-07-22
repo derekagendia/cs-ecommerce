@@ -9,6 +9,7 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('build/css/intlTelInput.min.css') }}">
@@ -80,5 +81,27 @@
     // on keyup / change flag: reset
     input.addEventListener('change', reset);
     input.addEventListener('keyup', reset);
+</script>
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const togglePasswordConfirmation = document.querySelector('#togglePasswordConfirmation');
+    const password = document.querySelector('#password');
+    const password_confirmation = document.querySelector('#password_confirmation');
+
+    togglePassword.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        // toggle the eye slash icon
+        this.classList.toggle('fa-eye-slash');
+    });
+
+    togglePasswordConfirmation.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = password_confirmation.getAttribute('type') === 'password' ? 'text' : 'password';
+        password_confirmation.setAttribute('type', type);
+        // toggle the eye slash icon
+        this.classList.toggle('fa-eye-slash');
+    });
 </script>
 </html>
