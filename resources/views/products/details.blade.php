@@ -27,7 +27,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Pay Now</button>
+                        <button type="submit" class="btn btn-primary">Pay</button>
                     </div>
                 </form>
             </div>
@@ -98,7 +98,11 @@
                     </p>
                     <ul class="list-unstyled">
                         <li class="list-inline-item">
-                            <div class="user"></div>
+                            <a href="{{ route('shop.owner',$details->shop->slug) }}" style="text-decoration: none;">
+                                <div class="user"
+                                     style="background-image:url('{{ asset('assets/img/dg2.jpg') }}'); size:cover;">
+                                </div>
+                            </a>
                         </li>
                         <li class="list-inline-item">
                             <p class="text-sm text-muted" style="line-height:1px;">seller</p>
@@ -153,7 +157,7 @@
                         <div class="modal-footer">
                             <button id="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
                             </button>
-                            <button id="pay" type="submit" class="btn btn-primary">Pay now</button>
+                            <button id="pay" type="submit" class="btn btn-primary">Pay</button>
                         </div>
                     </form>
                 </div>
