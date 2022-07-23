@@ -19,7 +19,7 @@
                             <li class="list-inline-item">
                                 <a href="{{ route('shop.owner',$product->shop->slug) }}" style="text-decoration: none;">
                                     <div class="user"
-                                         style="background-image:url('{{ asset('assets/img/dg2.jpg') }}'); size:cover;">
+                                         style="background-image:url('{{ asset(Voyager::image($product->shop->owner->avatar)) }}'); size:cover;">
                                     </div>
                                 </a>
                             </li>

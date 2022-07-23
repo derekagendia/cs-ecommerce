@@ -6,6 +6,13 @@
 
         <x-jet-validation-errors class="mb-4"/>
 
+        @if (session()->has('message'))
+            <div class="alert alert-success alert-dismissable text-center text-black">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                {{ session('message') }}.
+            </div>
+        @endif
+
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ session('status') }}

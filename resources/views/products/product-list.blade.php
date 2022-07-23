@@ -3,35 +3,35 @@
 @section('content')
 
     @if(!request()->routeIs('shop.owner'))
-            <div class="container mt-4">
-                <div class="row">
-                    <div class="col-md-6">
-                        <nav class="breadcrumb ">
-                            <a class="breadcrumb-item bread text-black" href="{{ route('home') }}">Home</a>
-                            <span class="breadcrumb-item active bread text-black">Search results</span>
-                        </nav>
-                    </div>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <nav class="breadcrumb ">
+                        <a class="breadcrumb-item bread text-black" href="{{ route('home') }}">Home</a>
+                        <span class="breadcrumb-item active bread text-black">Search results</span>
+                    </nav>
                 </div>
             </div>
+        </div>
         </div>
     @endif
 
     @if(request()->routeIs('shop.owner'))
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-6">
-                        <div class="d-flex pt-5">
-                            <img src="{{ asset('assets/img/profile.png') }}" class="img-profile shadow">
-                            <div>
-                                <ul class="list-unstyled ms-3 mt-3">
-                                    <li><span class="lead fw-bold text-warning">{{ $shop->name }}</span></li>
-                                    <li class="text-black">{{ $shop->owner->name }}</li>
-                                </ul>
-                            </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="d-flex pt-5">
+                        <img src="{{ asset(Voyager::image($shop->owner->avatar ))}}" class="img-profile shadow">
+                        <div>
+                            <ul class="list-unstyled ms-3 mt-3">
+                                <li><span class="lead fw-bold text-warning">{{ $shop->name }}</span></li>
+                                <li class="text-black">{{ $shop->owner->name }}</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     @endif
 
@@ -131,9 +131,9 @@
                                         <p>{{ $product->name }}</p>
                                         <ul class="list-unstyled pt-1">
                                             <li class="list-inline-item">
-                                                <a href="#" style="text-decoration: none;">
+                                                <a href="{{ route('shop.owner',$product->shop->slug) }}" style="text-decoration: none;">
                                                     <div class="user"
-                                                         style="background-image:url({{asset('assets/img/dg2.jpg')}}); size:cover;">
+                                                         style="background-image:url({{asset(Voyager::image($product->shop->owner->avatar))}}); size:cover;">
                                                     </div>
                                                 </a>
                                             </li>

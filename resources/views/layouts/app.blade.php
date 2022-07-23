@@ -66,12 +66,13 @@
             <div class="top-left-part">
                 <!-- Logo -->
 
-                <a class="logo" href="index.html">
+                <a class="logo" href="{{ route('dashboard') }}">
                     <!-- Logo icon image, you can use font-icon also --><b>
                         <!--This is dark logo icon-->
                         <img src="{{ asset('images/admin-logo.png') }}" alt="home" class="dark-logo"/>
                     </b>
-                    <!-- Logo text image you can use text also --><span class="hidden-xs">
+                    <!-- Logo text image you can use text also -->
+                    <span class="hidden-xs">
                         <!--This is dark logo text-->
                             {{ auth()->user()->shop->name }}
                      </span> </a>
@@ -106,9 +107,9 @@
                     </div>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+                <li><a href="{{ route('profile.setting') }}"><i class="ti-user"></i> My Profile</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
+                <li><a href="{{ route('profile.setting') }}"><i class="ti-settings"></i> Account Setting</a></li>
                 <li style="display:none;">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -118,11 +119,6 @@
                         </a>
                     </form>
                 </li>
-            </ul>
-            <!-- /.dropdown-user -->
-            </li>
-
-            <!-- /.dropdown -->
             </ul>
         </div>
         <!-- /.navbar-header -->

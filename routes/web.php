@@ -41,6 +41,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group( function () {
         Route::get('/products',\App\Http\Livewire\Product::class)->name('products.show');
         Route::get('/orders',\App\Http\Livewire\OrderTable::class)->name('orders.show');
         Route::get('/clients',\App\Http\Livewire\ShopClient::class)->name('client.show');
+        Route::get('/profile',\App\Http\Livewire\ProfileUpdated::class)->name('profile.setting');
+        Route::post('/update-profile',[\App\Http\Controllers\ProfileController::class,'update'])->name('profile.updated');
+        Route::post('/update-password',[\App\Http\Controllers\ProfileController::class,'updatePassword'])->name('password.updated');
 
     });
 });

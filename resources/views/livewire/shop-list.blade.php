@@ -11,7 +11,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <p class="fw-bold">{{ $shop->name }}</p>
-                                    <a href="{{ route('shop.owner',$shop->slug) }}" class="btn btn-primary btn-sm">Details Shop</a>
+                                    <a href="{{ route('shop.owner',$shop->slug) }}" class="btn btn-primary btn-sm">View Shop</a>
                                 </div>
                             </div>
 
